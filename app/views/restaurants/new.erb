@@ -1,6 +1,17 @@
 <a href="/users/new">Add A User</a>
 <a href="/restaurants">See All Restaurants</a>
 <a href="/users">See All Users</a>
+<h3>Search Yelp And Add A Lot Of Restaurants</h3>
+
+    <form method="POST" action="/yelp">
+    <p><label for="location">City:</label><input type="text" name="location"></p>
+    <p><label for="term">Search Parameter:</label><input type="text" name="term"></p>
+    <p><input type="submit" value="Search Yelp"></p>
+    </form>
+
+
+
+
 <h3>Add A Restaurant</h3>
 <form method="POST" action="/restaurants">  
 <p><label for="rest_name">Restaurant Name:</label><input type="text" name="name"></p>

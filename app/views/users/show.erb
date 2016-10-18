@@ -8,9 +8,9 @@
 Restaurants:
 <ul><% @user.restaurants.each do |rest| %>
 <li><a href="/restaurants/<%=rest.id%>"><%= rest.name %></a></li>
- <form action="/users/no_try" method="post">
- <input type="hidden" value="<%=@user.id%>" name="user_id">
- <input type="hidden" value="<%=rest.id%>" name="restaurant_id">
+  <form action="/users/no_try" method="post">
+  <input type="hidden" value="<%=@user.id%>" name="user_id">
+  <input type="hidden" value="<%=rest.id%>" name="restaurant_id">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="delete">
   </form></li>

@@ -8,6 +8,21 @@ get '/restaurants' do
 end
 
 
+post '/yelp' do
+    #CALL THE YELP API   
+    #params[:limit] = 10
+    #binding.pry
+    response = Yelp.client.search(params[:location], term: params[:term], limit: 10) 
+    response.businesses.each do |business|
+      Restaurant.create(name: business.name, address: business.location.address, rating: business.rating)
+    end 
+    #{}"https://api.yelp.com/v2/search?term=#{params[:term]}&location=#{params[:location]}&limit=10"
+
+
+
+    redirect to "/restaurants"
+end 
+
 get '/restaurants/new' do
   erb :'/restaurants/new'
 end
@@ -43,6 +58,7 @@ post '/restaurants/:id' do
   @restaurant.save
   redirect :"/restaurants/#{@restaurant.id}"
 end
+
 
 
   delete '/restaurants/:id/delete' do

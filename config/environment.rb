@@ -13,3 +13,5 @@ Yelp.client.configure do |config|
   config.token = 'rlP5-dh4uvdjnDsoUFsuIiJL_0bqO0zJ'
   config.token_secret = 'nnBWught5kfiLKrFzhwu98-3Uo8'
 end
+
+
