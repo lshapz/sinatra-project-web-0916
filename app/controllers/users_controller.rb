@@ -2,12 +2,12 @@ class UsersController < ApplicationController
 
 get '/users' do
   @users = User.all
-  erb :'users/index'
+  erb :'/users/index'
 end
 
 
 get '/users/new' do
-  erb :'users/new'
+  erb :'/users/new'
 end
 
 
@@ -18,7 +18,7 @@ end
 
 get '/users/:id' do
   @user = User.find(params[:id])
-  erb :'users/show'
+  erb :'/users/show'
 end
 
 get '/users/:id/edit' do
@@ -32,6 +32,12 @@ post '/users/:id' do
   @user.save
   redirect :"/users/#{@user.id}"
 end
+
+  delete '/users/:id/delete' do
+    #binding.pry
+    User.destroy(params[:id])
+    redirect to "/users"
+  end 
 
 
 end

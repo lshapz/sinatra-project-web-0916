@@ -30,4 +30,10 @@ People who want to try:
 
 </form>
 
+
+  <form action="/restaurants/<%=@rest.id%>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
+  </form>
+
 <a href="/restaurants/<%=@rest.id%>/edit">Edit Me</a>

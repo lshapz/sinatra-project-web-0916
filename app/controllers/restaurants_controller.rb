@@ -4,12 +4,12 @@ class RestaurantsController < ApplicationController
 
 get '/restaurants' do
   @restaurants = Restaurant.all
-  erb :'restaurants/index'
+  erb :'/restaurants/index'
 end
 
 
 get '/restaurants/new' do
-  erb :'restaurants/new'
+  erb :'/restaurants/new'
 end
 
 post '/restaurants' do
@@ -20,7 +20,7 @@ end
 get '/restaurants/:id' do
   @rest = Restaurant.find(params[:id])
   @users = User.all
-  erb :'restaurants/show'
+  erb :'/restaurants/show'
 end
 
 post '/tryme' do
@@ -43,5 +43,12 @@ post '/restaurants/:id' do
   @restaurant.save
   redirect :"/restaurants/#{@restaurant.id}"
 end
+
+
+  delete '/restaurants/:id/delete' do
+    #binding.pry
+    Restaurant.destroy(params[:id])
+    redirect to "/restaurants"
+  end 
 
 end
