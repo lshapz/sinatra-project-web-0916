@@ -1,27 +1,37 @@
 class UsersController < ApplicationController
 
-get '/users' do 
-  @users = User.all 
+get '/users' do
+  @users = User.all
   erb :'users/index'
-end 
+end
 
 
-get '/users/new' do 
+get '/users/new' do
   erb :'users/new'
-end 
+end
 
 
-post '/users' do 
+post '/users' do
   @user = User.create(params)
   redirect "/users/#{@user.id}"
-end 
+end
 
-
-
-get '/users/:id' do 
+get '/users/:id' do
   @user = User.find(params[:id])
   erb :'users/show'
-end 
+end
+
+get '/users/:id/edit' do
+  @user = User.find(params[:id])
+  erb :'/users/edit'
+end
+
+post '/users/:id' do
+  @user = User.find(params[:id])
+  @user.name = params[:user][:name]
+  @user.save
+  redirect :"/users/#{@user.id}"
+end
 
 
-end 
+end

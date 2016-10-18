@@ -2,32 +2,46 @@ class RestaurantsController < ApplicationController
 
 
 
-get '/restaurants' do 
-  @restaurants = Restaurant.all 
+get '/restaurants' do
+  @restaurants = Restaurant.all
   erb :'restaurants/index'
-end 
+end
 
 
-get '/restaurants/new' do 
+get '/restaurants/new' do
   erb :'restaurants/new'
-end 
+end
 
-post '/restaurants' do 
+post '/restaurants' do
   @restaurant = Restaurant.create(params)
   redirect "/restaurants/#{@restaurant.id}"
-end 
+end
 
-get '/restaurants/:id' do 
+get '/restaurants/:id' do
   @rest = Restaurant.find(params[:id])
-  @users = User.all 
+  @users = User.all
   erb :'restaurants/show'
-end 
+end
 
-post '/tryme' do 
+post '/tryme' do
   UserRestaurant.create(params)
-  #binding.pry 
+  #binding.pry
   id = params[:restaurant_id]
   redirect "/restaurants/#{id}"
-end 
+end
 
-end 
+get '/restaurants/:id/edit' do
+  @restaurant = Restaurant.find(params[:id])
+  erb :'/restaurants/edit'
+end
+
+post '/restaurants/:id' do
+  @restaurant = Restaurant.find(params[:id])
+  @restaurant.name = params[:restaurant][:name]
+  @restaurant.address = params[:restaurant][:address]
+  @restaurant.rating = params[:restaurant][:rating]
+  @restaurant.save
+  redirect :"/restaurants/#{@restaurant.id}"
+end
+
+end
