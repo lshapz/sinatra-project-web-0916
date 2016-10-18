@@ -32,9 +32,14 @@ post '/restaurants' do
 end
 
 get '/restaurants/:id' do
-  @rest = Restaurant.find(params[:id])
-  @users = User.all
-  erb :'/restaurants/show'
+  #if 
+  if Restaurant.find_by_id(params[:id]) == nil
+      redirect to '/restaurants/new'
+  else
+    @users = User.all
+    @rest = Restaurant.find(params[:id])
+    erb :'/restaurants/show'
+  end
 end
 
 post '/tryme' do

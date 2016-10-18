@@ -17,8 +17,12 @@ post '/users' do
 end
 
 get '/users/:id' do
-  @user = User.find(params[:id])
-  erb :'/users/show'
+  if User.find_by_id(params[:id]) == nil
+      redirect to '/users/new'
+  else
+    @user = User.find(params[:id])
+    erb :'/users/show'
+  end 
 end
 
 get '/users/:id/edit' do
