@@ -54,7 +54,7 @@ get '/restaurants/:id/edit' do
   erb :'/restaurants/edit'
 end
 
-post '/restaurants/:id' do
+patch '/restaurants/:id' do
   @restaurant = Restaurant.find(params[:id])
   @restaurant.name = params[:restaurant][:name]
   @restaurant.address = params[:restaurant][:address]
