@@ -8,8 +8,8 @@ set :database, {adapter: "sqlite3", database: "db/database.sqlite3"}
 require 'yelp'
 
 Yelp.client.configure do |config|
-  config.consumer_key = ''
-  config.consumer_secret = ''
-  config.token = ''
-  config.token_secret = ''
+  config.consumer_key = '7hbgP6jhhYxUjL5GeBYg1Q'
+  config.consumer_secret = 'svXs_alxqjv2bovnQg6NlJOwIS4'
+  config.token = 'rlP5-dh4uvdjnDsoUFsuIiJL_0bqO0zJ'
+  config.token_secret = 'nnBWught5kfiLKrFzhwu98-3Uo8'
 end

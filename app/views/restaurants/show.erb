@@ -1,0 +1,23 @@
+<p>Name: <%= @rest.name %></p>
+<p>Address: <%= @rest.address %></p>
+<p>Rating: <%= @rest.rating %></p>
+
+People who want to try:
+
+<ul><% @rest.users.each do |user| %>
+<li><%= user.name %></li>
+<% end %>
+</ul>
+<br></br>
+<strong>Add To List of Restaurants To Try</strong>
+<form action="/tryme" method="post">
+<select name="user_id">
+<% @users.each do |user| %>
+ <option value="<%= user.id %>"><%= user.name %></option>
+ <% end %>
+</select>
+<input  type="hidden" id="hidden" value="<%=@rest.id%>" name="restaurant_id">
+<input type="submit" value="submit">
+
+
+</form>
