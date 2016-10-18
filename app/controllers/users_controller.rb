@@ -30,8 +30,9 @@ get '/users/:id/edit' do
   erb :'/users/edit'
 end
 
-post '/users/:id' do
+patch '/users/:id' do
   @user = User.find(params[:id])
+  #binding.pry
   @user.name = params[:user][:name]
   @user.save
   redirect :"/users/#{@user.id}"
