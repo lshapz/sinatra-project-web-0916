@@ -52,13 +52,15 @@ end
   end 
 
   delete '/users/restaurants' do
-    UserRestaurant.where(user_id: params[:user_id], restaurant_id: params[:restaurant_id]).destroy_all 
     #binding.pry
-    redirect to "/users/#{params[:user_id]}"
+    UserRestaurant.where(user_id: params[:rest][:user_id], restaurant_id: params[:rest][:restaurant_id]).take.destroy
+#binding.pry
+    ##binding.pry
+    redirect to "/users/#{params[:rest][:user_id]}"
   end 
 
   delete '/users/unfavorite' do
-    UserFavorite.where(user_id: params[:user_id], restaurant_id: params[:restaurant_id]).destroy_all 
+    UserFavorite.where(user_id: params[:user_id], restaurant_id: params[:restaurant_id]).take.destroy 
     redirect to "/users/#{params[:user_id]}"
 
   end 
