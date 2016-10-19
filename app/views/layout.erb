@@ -5,6 +5,17 @@
   <title>Restaurant Finder</title>
   <style>
 
+    #navbar {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .navbaritem {
+      float: left;
+    }
+
     body {
       background-color: #EDD3C4;
       font-family: 'Century Gothic';
@@ -21,6 +32,8 @@
       text-align: center; 
       text-decoration: none;
       display: inline-block;
+      border-radius: 25px;
+      margin: 5px;
     }
 
     a:hover {
@@ -40,6 +53,16 @@
   </style>
 </head>
 <body>
+
+    <ul id='navbar'>
+      <li class="navbaritem"><a href="/restaurants/new">Add A Restaurant</a></li>
+      <li class="navbaritem"><a href="/users/new">Add A User</a></li>
+      <li class="navbaritem"><a href="/categories/new">Add A Category</a></li>
+      <li class="navbaritem"><a href="/restaurants">See All Restaurants</a></li>
+      <li class="navbaritem"><a href="/users">See All Users</a></li>
+      <li class="navbaritem"><a href="/categories">See All Categories</a></li>
+    </ul>
+
     <br>
     <%= yield %>
     <br><br>
