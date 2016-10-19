@@ -21,7 +21,11 @@ get '/restaurants/new' do
 end
 
 post '/restaurants' do
-  @restaurant = Restaurant.create(params)
+  @restaurant = Restaurant.create(params[:rest])
+  #binding.pry
+  category = Category.find_or_create_by(params[:cat])
+  @restaurant.categories = []
+  @restaurant.categories << category
   redirect "/restaurants/#{@restaurant.id}"
 end
 
@@ -56,7 +60,6 @@ patch '/restaurants/:id' do
   @restaurant = Restaurant.find(params[:id])
   @restaurant.name = params[:restaurant][:name]
   @restaurant.address = params[:restaurant][:address]
-  @restaurant.rating = params[:restaurant][:rating]
   @restaurant.save
   redirect :"/restaurants/#{@restaurant.id}"
 end
