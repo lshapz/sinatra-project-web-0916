@@ -7,7 +7,7 @@
 <p>Address: <%= @restaurant.address %></p>
 <p>Rating: <%= @restaurant.rating %></p>
 <p><a href="<%= @restaurant.url %>">View On Yelp</a></p>
-<p>Categories: <ul><% @restaurant.categories.uniq.each do |cat| %><li><%= cat.name %></li><%end%></ul></p>
+<p>Categories: <ul><% @restaurant.categories.uniq.each do |cat| %><li><a href="/categories/<%=cat.id%>"><%= cat.name %></a></li><%end%></ul></p>
 <p>Deals? <% if !@restaurant.deals %>
 None, sorry!
 <% else %>
