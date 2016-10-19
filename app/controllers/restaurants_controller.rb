@@ -37,12 +37,12 @@ get '/restaurants/:id' do
       redirect to '/restaurants/new'
   else
     @users = User.all
-    @rest = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params[:id])
     erb :'/restaurants/show'
   end
 end
 
-post '/tryme' do
+post '/restaurants/users' do
   UserRestaurant.create(params)
   #binding.pry
   id = params[:restaurant_id]

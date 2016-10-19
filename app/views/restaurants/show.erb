@@ -3,20 +3,20 @@
 <a href="/restaurants">See All Restaurants</a>
 <a href="/users">See All Users</a>
 
-<p>Name: <%= @rest.name %></p>
-<p>Address: <%= @rest.address %></p>
-<p>Rating: <%= @rest.rating %></p>
+<p>Name: <%= @restaurant.name %></p>
+<p>Address: <%= @restaurant.address %></p>
+<p>Rating: <%= @restaurant.rating %></p>
 
 People who want to try:
 
-<ul><% @rest.users.each do |user| %>
+<ul><% @restaurant.users.each do |user| %>
 <li><a href="/users/<%=user.id%>"><%= user.name %></a></li>
 <% end %>
 </ul>
 <br></br>
 <strong>Add To List of Restaurants To Try</strong>
 
-<form action="/tryme" method="post">
+<form action="/restaurants/users" method="post">
 
 <select name="user_id">
 <% @users.each do |user| %>
@@ -24,16 +24,16 @@ People who want to try:
  <% end %>
 </select>
 
-<input  type="hidden" id="hidden" value="<%=@rest.id%>" name="restaurant_id">
+<input  type="hidden" id="hidden" value="<%=@restaurant.id%>" name="restaurant_id">
 
 <input type="submit" value="submit">
 
 </form>
 
 
-  <form action="/restaurants/<%=@rest.id%>/delete" method="post">
+  <form action="/restaurants/<%=@restaurant.id%>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="delete">
   </form>
 
-<a href="/restaurants/<%=@rest.id%>/edit">Edit Me</a>
+<a href="/restaurants/<%=@restaurant.id%>/edit">Edit Me</a>

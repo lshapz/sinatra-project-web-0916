@@ -45,7 +45,7 @@ end
   end 
 
 
-  delete '/users/no_try' do
+  delete '/users/restaurants' do
     UserRestaurant.where(user_id: params[:user_id], restaurant_id: params[:restaurant_id]).destroy_all 
     #binding.pry
     redirect to "/users/#{params[:user_id]}"
