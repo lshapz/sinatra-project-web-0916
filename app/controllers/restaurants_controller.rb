@@ -26,6 +26,7 @@ post '/yelp' do
         business.deals.each {|deal| deal.options.each {|option| rest.deals_url = option.purchase_url}}
       end 
       rest.save
+      #binding.pry
     end 
     redirect to "/restaurants"
 end 
