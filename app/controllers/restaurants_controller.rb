@@ -64,7 +64,9 @@ end
 
 
   delete '/restaurants/:id/delete' do
-    #binding.pry
+    #binding.pry    
+    UserRestaurant.where(restaurant_id: params[:id]).destroy_all
+    UserFavorite.where(restaurant_id: params[:id]).destroy_all
     Restaurant.destroy(params[:id])
     redirect to "/restaurants"
   end 
