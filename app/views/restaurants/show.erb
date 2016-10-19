@@ -15,7 +15,7 @@ None, sorry!
 <p>People who love this restaurant:</p>
 
 <ul><% @restaurant.user_favorites.each do |fave| %>
-<li><a href="/users/<%=fave.user.id%>"><%= fave.user.name %></a></li>
+<p><li><a href="/users/<%=fave.user.id%>"><%= fave.user.name %></a></li></p>
 <% end %>
 </ul>
 
