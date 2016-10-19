@@ -7,6 +7,7 @@
 <p>Address: <%= @restaurant.address %></p>
 <p>Rating: <%= @restaurant.rating %></p>
 <p><a href="<%= @restaurant.url %>">View On Yelp</a></p>
+<p>Categories: <ul><% @restaurant.categories.uniq.each do |cat| %><li><%= cat.name %></li><%end%></ul></p>
 <p>Deals? <% if !@restaurant.deals %>
 None, sorry!
 <% else %>
@@ -42,9 +43,9 @@ People who want to try:
 </form>
 
 
-  <form action="/restaurants/<%=@restaurant.id%>/delete" method="post">
+<p>  <form action="/restaurants/<%=@restaurant.id%>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="delete">
+  <input type="submit" value="delete entire restauarant">
   </form>
-
-<a href="/restaurants/<%=@restaurant.id%>/edit">Edit Me</a>
+</p>
+<p><a href="/restaurants/<%=@restaurant.id%>/edit">Edit Me</a></p>

@@ -16,6 +16,15 @@ post '/yelp' do
     #binding.pry
     response.businesses.each do |business|
       rest = Restaurant.find_or_create_by(address: business.location.address[0])
+      #binding.pry
+      business.categories.each do |category|
+        category.each do |cat| 
+          if category.index(cat) % 2 == 0
+            cath = Category.find_or_create_by(name: cat)
+            rest.categories << cath
+          end
+        end
+      end
       rest.name = business.name
       rest.rating = business.rating 
       rest.url = business.url 
