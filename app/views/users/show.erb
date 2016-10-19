@@ -5,18 +5,34 @@
 
 <h3>Name: <%= @user.name %></h3>
 
-Restaurants To Try: 
-<ul><% @user.user_restaurants.each do |try| %>
-<li><a href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a></li>
+<p>Restaurants To Try: </p>
+<% @user.user_restaurants.each do |try| %>
+<% if try.been_there == false %>
+<ul><li><a href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a></li>
   <form action="/users/restaurants" method="post">
   <input type="hidden" value="<%=@user.id%>" name="rest[user_id]">
   <input type="hidden" value="<%=try.restaurant.id%>" name="rest[restaurant_id]">
   <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="delete">
-  </form></li>
+  <input type="submit" value="delete from to-try list">
+  </form>
+ <form action="/users/beenthere" method="post">
+  <input type="hidden" value="<%=@user.id%>" name="rest[user_id]">
+  <input type="hidden" value="<%=try.restaurant.id%>" name="rest[restaurant_id]">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <input id="hidden" type="hidden" name="also[been_there]" value="true">
+  <input type="submit" value="been there!">
+</form></li></ul>
+<% end %>
+<% end %>
 
-<% end %></ul>
-
+<p>I've Tried: </p>
+<ul>
+<% @user.user_restaurants.each do |try| %>
+<% if try.been_there == true %>
+  <p><li><a href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a></li></p>
+<% end %>
+<% end %>
+</ul>
 Favorite Restaurants:
 <ul><% @user.restaurants.each do |restaurant| %>
 <li><a href="/restaurants/<%=restaurant.id%>"><%= restaurant.name %></a></li>

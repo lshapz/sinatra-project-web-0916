@@ -7,7 +7,6 @@ get '/restaurants' do
   erb :'/restaurants/index'
 end
 
-
 post '/yelp' do
     #CALL THE YELP API   
     #params[:limit] = 10
@@ -38,6 +37,7 @@ get '/restaurants/:id' do
 end
 
 post '/restaurants/users' do
+  params[:been_there] = false
   UserRestaurant.create(params)
   #binding.pry
   id = params[:restaurant_id]

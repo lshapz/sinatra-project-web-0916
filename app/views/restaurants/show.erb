@@ -19,13 +19,24 @@ None, sorry!
 <% end %>
 </ul>
 
-People who want to try:
+<p>People who want to try:</p>
 
-<ul><% @restaurant.users.each do |user| %>
-<li><a href="/users/<%=user.id%>"><%= user.name %></a></li>
-<% end %>
+<ul><% @restaurant.user_restaurants.each do |user_rest| %>
+  <% if user_rest.been_there == false %>
+  <p><li><a href="/users/<%=user_rest.user.id%>"><%= user_rest.user.name %></a></li></p>
+  <% end %>
+  <% end %>
 </ul>
+
+<p>People who have tried us:</p>
+
+<ul><% @restaurant.user_restaurants.each do |user_rest| %>
+  <% if user_rest.been_there == true %>
+<p><li><a href="/users/<%=user_rest.user.id%>"><%= user_rest.user.name %></a></li></p>
+  <% end %>
+<% end %>
 <br></br>
+
 <strong>Add To List of Restaurants To Try</strong>
 
 <form action="/restaurants/users" method="post">
@@ -36,7 +47,7 @@ People who want to try:
  <% end %>
 </select>
 
-<input  type="hidden" id="hidden" value="<%=@restaurant.id%>" name="restaurant_id">
+<input type="hidden" id="hidden" value="<%=@restaurant.id%>" name="restaurant_id">
 
 <input type="submit" value="submit">
 

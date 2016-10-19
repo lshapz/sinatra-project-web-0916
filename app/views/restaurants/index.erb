@@ -5,6 +5,6 @@
 <h3>Restaurants</h3>
 <ul>
 <% @restaurants.each do |rest| %>
-<li><a href="/restaurants/<%=rest.id%>"><%= rest.name %></a></li>
+<p><li><a href="/restaurants/<%=rest.id%>"><%= rest.name %></a></li></p>
 <% end %>
 </ul>

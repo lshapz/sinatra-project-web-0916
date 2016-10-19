@@ -3,5 +3,5 @@
 <a href="/restaurants">See All Restaurants</a>
 <h1>Users</h1>
 <ul><% @users.each do |user| %>
-<li><a href="/users/<%=user.id%>"><%= user.name %></a></li>
+<p><li><a href="/users/<%=user.id%>"><%= user.name %></a></li></p>
 <% end %></ul>

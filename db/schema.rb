@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20161019155454) do
   create_table "user_restaurants", force: :cascade do |t|
     t.integer "user_id"
     t.integer "restaurant_id"
+    t.boolean "been_there"
   end
 
   create_table "users", force: :cascade do |t|

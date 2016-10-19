@@ -31,30 +31,11 @@ get '/users/:id/edit' do
   erb :'/users/edit'
 end
 
-patch '/users/:id' do
-  @user = User.find(params[:id])
-  #binding.pry
-  @user.name = params[:user][:name]
-  @user.save
-  redirect :"/users/#{@user.id}"
-end
-
-post '/users/favorites' do
-  UserFavorite.create(params)
-  id = params[:user_id]
-  redirect to "/users/#{id}"
-end 
-
-  delete '/users/:id/delete' do
-    #binding.pry
-    User.destroy(params[:id])
-    redirect to "/users"
-  end 
 
   delete '/users/restaurants' do
     #binding.pry
     UserRestaurant.where(user_id: params[:rest][:user_id], restaurant_id: params[:rest][:restaurant_id]).take.destroy
-#binding.pry
+    #binding.pry
     ##binding.pry
     redirect to "/users/#{params[:rest][:user_id]}"
   end 
@@ -64,5 +45,35 @@ end
     redirect to "/users/#{params[:user_id]}"
 
   end 
+
+
+patch '/users/beenthere' do 
+  @rest = UserRestaurant.find_by(params[:rest])
+  @rest.update(params[:also])
+  id = params[:rest][:user_id]
+  redirect to "/users/#{id}"
+
+end 
+
+post '/users/favorites' do
+  UserFavorite.create(params)
+  id = params[:user_id]
+  redirect to "/users/#{id}"
+end 
+
+patch '/users/:id' do
+  @user = User.find(params[:id])
+  #binding.pry
+  @user.name = params[:user][:name]
+  @user.save
+  redirect :"/users/#{@user.id}"
+end
+
+  delete '/users/:id/delete' do
+    #binding.pry
+    User.destroy(params[:id])
+    redirect to "/users"
+  end 
+
 
 end
