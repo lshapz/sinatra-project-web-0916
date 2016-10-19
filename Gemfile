@@ -13,3 +13,5 @@ gem 'rake'
 gem 'sqlite3'
 gem 'yelp', require: 'yelp'
 gem 'annotate'
+gem 'google-maps'
+
