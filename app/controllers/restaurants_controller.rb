@@ -37,8 +37,11 @@ get '/restaurants/:id' do
 end
 
 post '/restaurants/users' do
-  params[:been_there] = false
-  UserRestaurant.create(params)
+  #binding.pry
+  if UserRestaurant.where(params).empty? 
+    params[:been_there] = false
+    UserRestaurant.create(params)
+  end 
   #binding.pry
   id = params[:restaurant_id]
   redirect "/restaurants/#{id}"
