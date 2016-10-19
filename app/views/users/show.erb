@@ -50,13 +50,14 @@ Add To Favorite Restaurants:
 
 <form action="/users/favorites" method="post">
 
-<select name="restaurant_id">
+<select name="rest[restaurant_id]">
 <% @restaurants.each do |restaurant| %>
  <option value="<%= restaurant.id %>"><%= restaurant.name %></option>
  <% end %>
 </select>
 
-<input  type="hidden" id="hidden" value="<%=@user.id%>" name="user_id">
+<input  type="hidden" id="hidden" value="<%=@user.id%>" name="rest[user_id]">
+<input  type="hidden" id="hidden" value="true" name="been_there">
 
 <input type="submit" value="submit">
 

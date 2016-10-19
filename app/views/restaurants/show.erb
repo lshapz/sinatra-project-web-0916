@@ -22,7 +22,7 @@ None, sorry!
 <p>People who want to try:</p>
 
 <ul><% @restaurant.user_restaurants.each do |user_rest| %>
-  <% if user_rest.been_there == false %>
+  <% if user_rest.user.been_there == false %>
   <p><li><a href="/users/<%=user_rest.user.id%>"><%= user_rest.user.name %></a></li></p>
   <% end %>
   <% end %>

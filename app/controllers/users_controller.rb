@@ -56,8 +56,10 @@ patch '/users/beenthere' do
 end 
 
 post '/users/favorites' do
-  UserFavorite.create(params)
-  id = params[:user_id]
+  UserFavorite.create(params[:rest])
+  id = params[:rest][:user_id]
+  going = UserRestaurant.find_or_create_by(user_id: params[:rest][:user_id], restaurant_id: params[:rest][:restaurant_id])
+  going.update(been_there: true)
   redirect to "/users/#{id}"
 end 
 
