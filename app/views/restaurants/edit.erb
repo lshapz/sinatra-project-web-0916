@@ -6,7 +6,12 @@
 
 <p><label for="address">Restaurant Address:</label><input type="text" name="restaurant[address]" value="<%=@restaurant.address%>"></p>
 
-<p><label for="category">Restaurant Category:</label><input type="text" name="restaurant[category]" value="<%=@restaurant.category%>"></p>
+<p><label for="cat">Restaurant Categories:</label></p>
+  <%Category.all.each do |category|%>
+   
+<p><input id="<%=category.name%>" type="checkbox" name="cat[]" value="<%= category.id %>" <%='checked' if @restaurant.categories.include?(category)%>><%=category.name %></p>
+  <%end%>
+
 
 <input type="hidden" id="hidden" name="_method" value="patch">
 

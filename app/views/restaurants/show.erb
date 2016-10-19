@@ -2,7 +2,9 @@
 <p>Address: <%= @restaurant.address %></p>
 <p>Rating: <%= @restaurant.rating %></p>
 <p><a href="<%= @restaurant.url %>">View On Yelp</a></p>
-<p>Categories: <ul><% @restaurant.categories.uniq.each do |cat| %><li><a href="/categories/<%=cat.id%>"><%= cat.name %></a></li><%end%></ul></p>
+<p>Categories: </p>
+<ul><% @restaurant.categories.uniq.each do |cat| %>
+<p><li><a href="/categories/<%=cat.id%>"><%= cat.name %></a></li></p><%end%></ul>
 <p>Deals? <% if !@restaurant.deals %>
 None, sorry!
 <% else %>
@@ -29,7 +31,7 @@ None, sorry!
   <% if user_rest.been_there == true %>
 <p><li><a href="/users/<%=user_rest.user.id%>"><%= user_rest.user.name %></a></li></p>
   <% end %>
-<% end %>
+<% end %></ul>
 <br></br>
 
 <strong>Add To List of Restaurants To Try</strong>

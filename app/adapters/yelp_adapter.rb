@@ -23,6 +23,16 @@ class YelpApi
               business.deals.each {|deal| deal.options.each {|option| params[:deals_title] = option.title}}
               business.deals.each {|deal| deal.options.each {|option| params[:deals_url] = option.purchase_url}}
             end 
+              params[:categories] = []
+                business.categories.each do |category|
+                  category.each do |cat| 
+                   if category.index(cat) % 2 == 0
+                      cath = Category.find_or_create_by(name: cat)
+                      params[:categories] << cath
+           end
+         end
+       end
+
         Restaurant.create(params)
       end
   end
