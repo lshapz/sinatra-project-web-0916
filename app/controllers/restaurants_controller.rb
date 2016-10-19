@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
 
-
+require_all ('app/adapters')
 
 get '/restaurants' do
   @restaurants = Restaurant.all
@@ -12,31 +12,8 @@ post '/yelp' do
     #CALL THE YELP API   
     #params[:limit] = 10
     #binding.pry
-    response = Yelp.client.search(params[:location], params[:search], limit: 10) 
+    YelpApi.search(params[:location], params[:search], limit: 10)
     #binding.pry
-    response.businesses.each do |business|
-      rest = Restaurant.find_or_create_by(address: business.location.address[0])
-      #binding.pry
-      business.categories.each do |category|
-        category.each do |cat| 
-          if category.index(cat) % 2 == 0
-            cath = Category.find_or_create_by(name: cat)
-            rest.categories << cath
-          end
-        end
-      end
-      rest.name = business.name
-      rest.rating = business.rating 
-      rest.url = business.url 
-      #binding.pry
-      if business.deals != nil
-        rest.deals = business.deals
-        business.deals.each {|deal| deal.options.each {|option| rest.deals_title = option.title}}
-        business.deals.each {|deal| deal.options.each {|option| rest.deals_url = option.purchase_url}}
-      end 
-      rest.save
-      #binding.pry
-    end 
     redirect to "/restaurants"
 end 
 
