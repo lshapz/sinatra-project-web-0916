@@ -8,6 +8,7 @@ class CreateRestaurant < ActiveRecord::Migration
        t.string :deals
        t.string :deals_title
        t.string :deals_url
+       t.string :yelp_id 
     end 
   end
 end

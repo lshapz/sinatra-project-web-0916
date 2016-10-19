@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20161019155454) do
     t.string "deals"
     t.string "deals_title"
     t.string "deals_url"
+    t.string "yelp_id"
   end
 
   create_table "user_favorites", force: :cascade do |t|

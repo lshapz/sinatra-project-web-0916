@@ -1,0 +1,83 @@
+application controller 
+    / (index)
+restaurant controller
+1) GET 
+    index
+    show
+    edit
+    new
+2) POST 
+    /yelp
+      a) check that restaurant is created (Restaurant.all.first != nil)
+      b) check that it has the relevant parameters 
+        i) name
+        ii) address 
+        iii) rating 
+      c) check that it redirects to the right index
+    /restaurants
+      a) check that restaurant is created (Restaurant.all.first != nil)
+      b) check that it has the relevant parameters        
+        i) name
+        ii) address 
+        iii) rating 
+      c) check that it redirects to the right index
+    /restaurants/users
+      a) check that the user.user_restaurants has restauarant_id
+      b) check that restaurant.users has user_id
+      c) check UserRestaurants for a matching row
+      d) check the redirect
+3) PATCH 
+    /restaurants/:id
+      a) check to see if name change works
+      b) check to see if address change works
+      c) check to see if category change works
+        i) check to see if nil category works 
+4) DELETE
+    /restaurants/:id/delete
+      a) check to see if the restaurant is gone
+      b) check UserRestaurants to make sure no row has restaurant_id matching delted_id
+      b) check UserFavorites to make sure no row has restaurant_id matching delted_id
+
+user controller 
+1) GET 
+    index
+    show
+    edit
+    new
+2) POST 
+    /new
+      a) check that user is created (Restaurant.all.first != nil)
+      b) check that it has a name  
+      c) check that it redirects to the right index
+    /users/restaurants
+      a) check that the restaurant.users has user_id
+      b) check that user.user_restaurants has restaurant_id
+      c) check UserRestaurants for a matching row 
+      d) check the redirect
+    /users/favorites
+      a) check that the restaurant.user_restaurants has user_id
+      b) check that user.restaurants has restaurant_id
+      c) check UserFavorites for a matching row 
+      d) check the redirect
+3) PATCH 
+    /users/beenthere
+      a) check UserFavorites for a matching row with boolean moved to true 
+      b) check to see if button moved on show page
+4) DELETE
+    /user/:id/delete
+      a) check to see if the user is gone
+      b) check UserRestaurants to make sure no row has user_id matching deleted_id
+      b) check UserFavorites to make sure no row has user_id matching deleted_id
+    /users/unfavorite
+      a) check UserFavorites to see if row was deleted
+      b) check user page to see if rest is gone (from faves, never tried)
+      c) check restaurant page to see if user is gone (from faves, never tried)
+category controller 
+1) GET 
+    index
+    show
+    new
+2) POST
+    /category
+      a) check to see if it creates a new category
+      b) check redirect 
