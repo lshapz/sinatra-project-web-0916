@@ -5,7 +5,8 @@
 
     <form method="POST" action="/yelp">
     <p><label for="location">Location:</label><input type="text" name="location"></p>
-    <p><label for="term">Search Parameter:</label><input type="text" name="term"></p>
+    <p><label for="term">Search Parameter:</label><input type="text" name="search[term]"></p>
+    <p><input type="hidden" id="hidden" name="search[category_filter]" value="restaurants"></p>
     <p><input type="submit" value="Search Yelp"></p>
     </form>
 
