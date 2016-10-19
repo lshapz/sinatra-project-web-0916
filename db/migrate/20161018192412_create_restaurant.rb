@@ -2,8 +2,12 @@ class CreateRestaurant < ActiveRecord::Migration
   def change
     create_table :restaurants do |t|
        t.string :name
-       t.integer :rating
+       t.float :rating
        t.string :address
+       t.string :url
+       t.string :deals
+       t.string :deals_title
+       t.string :deals_url
     end 
   end
 end

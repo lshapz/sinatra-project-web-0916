@@ -13,12 +13,18 @@ post '/yelp' do
     #params[:limit] = 10
     #binding.pry
     response = Yelp.client.search(params[:location], params[:search], limit: 10) 
+    #binding.pry
     response.businesses.each do |business|
       rest = Restaurant.find_or_create_by(address: business.location.address[0])
       rest.name = business.name
       rest.rating = business.rating 
       rest.url = business.url 
-      rest.deals = business.deals
+      #binding.pry
+      if business.deals != nil
+        rest.deals = business.deals
+        business.deals.each {|deal| deal.options.each {|option| rest.deals_title = option.title}}
+        business.deals.each {|deal| deal.options.each {|option| rest.deals_url = option.purchase_url}}
+      end 
       rest.save
     end 
     redirect to "/restaurants"

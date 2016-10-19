@@ -1,0 +1,103 @@
+=> #<Yelp::Response::Model::Business:0x007f86ac486ce8
+ @categories=
+  [["Asian Fusion", "asianfusion"],
+   ["Szechuan", "szechuan"],
+   ["Japanese", "japanese"]],
+ @deals=
+  [#<Yelp::Response::Model::Deal:0x007f86ac486860
+    @additional_restrictions=
+     "Promotion lasts for 1 year from date of purchase. After that period, your voucher is redeemable for the amount you paid, less any value you may have received. Not valid as payment for Eat24 purchases. Not valid with other vouchers, certificates, or offers. Only 1 voucher(s) can be purchased and redeemed per person. Up to 3 can be purchased as gifts for others. Subject to the <a target=\"_blank\" href=\"https://www.yelp.com/tos/general_b2c_us_20120911\">General Terms</a>.",
+    @currency_code="USD",
+    @id="AfUt3ZPwdoEWPYac-4Yecg",
+    @image_url=
+     "https://s3-media4.fl.yelpcdn.com/dphoto/tfuaPm6gkncW4uyMWjUJ_g/m.jpg",
+    @important_restrictions="Limit 1 voucher(s) per table.",
+    @important_restrictions="Limit 1 voucher(s) per table.",
+    @is_popular=true,
+    @options=
+     [#<Yelp::Response::Model::DealOption:0x007f86ac486630
+       @formatted_original_price="$30",
+       @formatted_price="$24",
+       @is_quantity_limited=false,
+       @original_price=3000,
+       @price=2400,
+       @purchase_url=
+        "https://www.yelp.com/checkout/deal/mEWQeZ_DjEPnxwq-TgcmYg?adjust_creative=7hbgP6jhhYxUjL5GeBYg1Q&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=7hbgP6jhhYxUjL5GeBYg1Q",
+       @title="$24 for $30">],
+    @time_start=1451440929,
+    @title="$24 for $30",
+    @url=
+     "https://www.yelp.com/deals/alpha-fusion-new-york-2?adjust_creative=7hbgP6jhhYxUjL5GeBYg1Q&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=7hbgP6jhhYxUjL5GeBYg1Q",
+    @what_you_get=
+     "You get a voucher redeemable for $30 at Alpha Fusion.\nPrint out your voucher, or redeem on your phone with the <a href=\"https://www.yelp.com/mobile?source=deal_marketing\">Yelp app</a>.">],
+ @display_phone="+1-212-279-8887",
+ @distance=18.394379761179106,
+ @gift_certificates=
+  [#<Yelp::Response::Model::GiftCertificate:0x007f86ac486450
+    @currency_code="USD",
+    @id="SSi80bs6H1PR3GkXYw_0wQ",
+    @image_url=
+     "https://s3-media2.fl.yelpcdn.com/bphoto/CS-BCPFzbMW9dsfnKwJTCg/m.jpg",
+    @options=
+     [#<Yelp::Response::Model::GiftCertificateOption:0x007f86ac4862c0
+       @formatted_price="$10",
+       @price=1000>,
+      #<Yelp::Response::Model::GiftCertificateOption:0x007f86ac486248
+       @formatted_price="$25",
+       @price=2500>,
+      #<Yelp::Response::Model::GiftCertificateOption:0x007f86ac4861d0
+       @formatted_price="$50",
+       @price=5000>,
+      #<Yelp::Response::Model::GiftCertificateOption:0x007f86ac486158
+       @formatted_price="$75",
+       @price=7500>,
+      #<Yelp::Response::Model::GiftCertificateOption:0x007f86ac4860e0
+       @formatted_price="$100",
+       @price=10000>,
+      #<Yelp::Response::Model::GiftCertificateOption:0x007f86ac486068
+       @formatted_price="$150",
+       @price=15000>],
+    @unused_balances="CREDIT",
+    @url=
+     "https://www.yelp.com/gift-certificates/alpha-fusion-new-york-2?adjust_creative=7hbgP6jhhYxUjL5GeBYg1Q&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=7hbgP6jhhYxUjL5GeBYg1Q">],
+ @id="alpha-fusion-new-york-2",
+ @image_url=
+  "https://s3-media1.fl.yelpcdn.com/bphoto/h8fhgqkGMx618F4wgbCj2g/ms.jpg",
+ @is_claimed=true,
+ @is_closed=false,
+ @location=
+  #<Yelp::Response::Model::Location:0x007f86ac485ff0
+   @address=["365 W 34th St"],
+   @city="New York",
+   @coordinate=
+    #<Yelp::Response::Model::Coordinate:0x007f86ac485dc0
+     @latitude=40.7532663,
+     @longitude=-73.99589>,
+   @country_code="US",
+   @cross_streets="9th Ave & 8th Ave",
+   @display_address=["365 W 34th St", "Midtown West", "New York, NY 10001"],
+   @geo_accuracy=9.5,
+   @neighborhoods=["Midtown West", "Hell's Kitchen", "Chelsea"],
+   @postal_code="10001",
+   @state_code="NY">,
+ @menu_date_updated=1476832073,
+ @menu_provider="delivery_menu",
+ @mobile_url=
+  "https://m.yelp.com/biz/alpha-fusion-new-york-2?adjust_creative=7hbgP6jhhYxUjL5GeBYg1Q&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=7hbgP6jhhYxUjL5GeBYg1Q",
+ @name="Alpha Fusion",
+ @phone="2122798887",
+ @rating=4.0,
+ @rating_img_url=
+  "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/c2f3dd9799a5/ico/stars/v1/stars_4.png",
+ @rating_img_url_large=
+  "https://s3-media2.fl.yelpcdn.com/assets/2/www/img/ccf2b76faa2c/ico/stars/v1/stars_large_4.png",
+ @rating_img_url_small=
+  "https://s3-media4.fl.yelpcdn.com/assets/2/www/img/f62a5be2f902/ico/stars/v1/stars_small_4.png",
+ @review_count=346,
+ @reviews=nil,
+ @snippet_image_url=
+  "https://s3-media2.fl.yelpcdn.com/photo/Cu6Mf7hF5M6R98Cz3AHxBQ/ms.jpg",
+ @snippet_text=
+  "Great sushi! Awesome fusion options.  Portion size is great.  Staff is friendly, nice and funny! \nThe food! Omg the food. So fabulous!\nMust try when you're...",
+ @url=
+  "https://www.yelp.com/biz/alpha-fusion-new-york-2?adjust_creative=7hbgP6jhhYxUjL5GeBYg1Q&utm_campaign=yelp_api&utm_medium=api_v2_search&utm_source=7hbgP6jhhYxUjL5GeBYg1Q">

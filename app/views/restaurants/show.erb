@@ -7,9 +7,11 @@
 <p>Address: <%= @restaurant.address %></p>
 <p>Rating: <%= @restaurant.rating %></p>
 <p><a href="<%= @restaurant.url %>">View On Yelp</a></p>
-<p>Deals? <%= @restaurant.deals %></p>
-
-People who love this restaurant:
+<p>Deals? <% if !@restaurant.deals %>
+None, sorry!
+<% else %>
+<a href="<%= @restaurant.deals_url %>"><%= @restaurant.deals_title %></a></p><%end%>
+<p>People who love this restaurant:</p>
 
 <ul><% @restaurant.user_favorites.each do |fave| %>
 <li><a href="/users/<%=fave.user.id%>"><%= fave.user.name %></a></li>
