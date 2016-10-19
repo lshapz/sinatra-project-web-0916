@@ -1,0 +1,8 @@
+<h2><p>Category:</p></h2>
+<h3><p><%= @category.name %></p>
+<p>Restaurants:</p></h3>
+<ul>
+<% @category.restaurants.each do |rest| %>
+<li> <a href="/restaurants/<%=rest.id%>"><%=rest.name%></a> </li>
+<%end %>
+</ul>
