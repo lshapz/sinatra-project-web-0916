@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
 get '/users' do
-  @users = User.all
+  use = User.all
+  @users = use.sort_by {|x| x.name}
   erb :'/users/index'
 end
 

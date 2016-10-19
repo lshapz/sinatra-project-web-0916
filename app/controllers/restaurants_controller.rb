@@ -3,7 +3,8 @@ class RestaurantsController < ApplicationController
 require_all ('app/adapters')
 
 get '/restaurants' do
-  @restaurants = Restaurant.all
+  rest = Restaurant.all
+  @restaurants = rest.sort_by {|x| x.name}
   erb :'/restaurants/index'
 end
 

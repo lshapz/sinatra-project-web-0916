@@ -1,7 +1,8 @@
-class UsersController < ApplicationController
+class CategoriesController < ApplicationController
 
 get '/categories' do
-  @categories = Category.all
+  cat = Category.all
+  @categories  = cat.sort_by {|x| x.name}
   erb :'/categories/index'
 end
 
