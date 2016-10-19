@@ -35,9 +35,8 @@ restaurant controller
 4) DELETE
     /restaurants/:id/delete
       a) check to see if the restaurant is gone
-      b) check UserRestaurants to make sure no row has restaurant_id matching delted_id
-      b) check UserFavorites to make sure no row has restaurant_id matching delted_id
-
+      b) check UserRestaurants to make sure no row has restaurant_id matching deleted_id
+      b) check UserFavorites to make sure no row has restaurant_id matching deleted_id
 user controller 
 1) GET 
     index

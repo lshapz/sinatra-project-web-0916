@@ -14,4 +14,6 @@ gem 'sqlite3'
 gem 'yelp', require: 'yelp'
 gem 'annotate'
 gem 'google-maps'
-
+gem 'sinatra-simple-authentication'
+gem 'haml'
+gem 'rack-flash3', '~> 1.0.1'
