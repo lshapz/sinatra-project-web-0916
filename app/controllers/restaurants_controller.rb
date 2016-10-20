@@ -106,7 +106,8 @@ post '/restaurants/favorites' do
   UserFavorite.find_or_create_by(params[:rest])
   id = params[:rest][:restaurant_id]
   going = UserRestaurant.find_or_create_by(user_id: params[:rest][:user_id], restaurant_id: params[:rest][:restaurant_id])
-  going.update(been_there: true)
+  going.update(been_there: true) 
+  going.save
   redirect to "/restaurants/#{id}"
 end 
 

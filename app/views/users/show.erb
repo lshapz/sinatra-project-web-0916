@@ -1,25 +1,19 @@
+<style>
+/*a < .wrapper */
+/* {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      
+    }
+*/
+    .rester {
+      float: left;
+      overflow: hidden;
+    }
+    </style>
+
 <h3>Name: <%= @user.name %></h3>
-
-<p>Restaurants To Try: </p>
-<% @sortable.each do |try| %>
-<% if try.been_there == false %>
-
-<a class="nolist" href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a>
-  <form class="nolist" action="/users/restaurants" method="post">
-  <input type="hidden" value="<%=@user.id%>" name="rest[user_id]">
-  <input type="hidden" value="<%=try.restaurant.id%>" name="rest[restaurant_id]">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="I don't wanna go anymore">
-  </form>
- <form class="nolist" action="/users/beenthere" method="post">
-  <input type="hidden" value="<%=@user.id%>" name="rest[user_id]">
-  <input type="hidden" value="<%=try.restaurant.id%>" name="rest[restaurant_id]">
-  <input type="hidden" id="hidden" name="_method" value="patch">
-  <input id="hidden" type="hidden" name="also[been_there]" value="true">
-  <input type="submit" value="I tried it!">
-</form>
-<% end %>
-<% end %>
 
 <p>I've Tried: </p>
 
@@ -67,6 +61,27 @@
 
 </form>
 
+<div class="wrapper"><p>Restaurants To Try: </p>
+<% @sortable.each do |try| %>
+<% if try.been_there == false %>
+
+<div class="rester"><a class="nolist" href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a>
+  <form class="nolist" action="/users/restaurants" method="post">
+  <input type="hidden" value="<%=@user.id%>" name="rest[user_id]">
+  <input type="hidden" value="<%=try.restaurant.id%>" name="rest[restaurant_id]">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="I don't wanna go anymore">
+  </form>
+ <form class="nolist" action="/users/beenthere" method="post">
+  <input type="hidden" value="<%=@user.id%>" name="rest[user_id]">
+  <input type="hidden" value="<%=try.restaurant.id%>" name="rest[restaurant_id]">
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <input id="hidden" type="hidden" name="also[been_there]" value="true">
+  <input type="submit" value="I tried it!">
+</form></div>
+<% end %>
+<% end %>
+</div>
 <!-- 
 <form action="/users/unfavorite" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
@@ -77,5 +92,8 @@
 </form> -->
 
 
+<br></br>
+<br></br>
 
+<br></br>
 <p><a href="/users/<%=@user.id%>/edit">Edit User</a></p>
