@@ -42,31 +42,36 @@
 
 <select name="rest[restaurant_id]">
 <% @restaurants.each do |restaurant| %>
+<% if !@user.restaurants.include?(restaurant) %>
  <option value="<%= restaurant.id %>"><%= restaurant.name %></option>
- <% end %>
- <input type="submit" value="submit">
-
+<% end %>
+<% end %>
 </select>
+<input type="submit" value="submit">
+<input type="hidden" value="<%=@user.id%>" name="user_id">
+<input type="hidden" id="hidden" value="true" name="been_there">
+<input type="hidden" id="hidden" value="<%=@user.id%>" name="rest[user_id]">
+</form>
+
 <p>Subtract From Favorite Restaurants: </p>
 
-<form action="/users/favorites" method="post">
-
+<form action="/users/unfavorites" method="post">
+<input id="hidden" type="hidden" name="_method" value="delete">
 <select name="restaurant_id">
 <% @user.restaurants.each do |restaurant| %>
  <option value="<%= restaurant.id %>"><%= restaurant.name %></option>
  <% end %>
-    <input type="hidden" value="<%=@user.id%>" name="user_id">
-    <input id="hidden" type="hidden" name="_method" value="delete">
-<input type="submit" value="submit">
-
 </select>
+<input type="submit" value="submit">
+<input type="hidden" value="<%=@user.id%>" name="user_id">
+
+</form>
+
 <!-- 
 <form action="/users/unfavorite" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="delete">
 
-<input  type="hidden" id="hidden" value="<%=@user.id%>" name="rest[user_id]">
-<input  type="hidden" id="hidden" value="true" name="been_there">
 
 
 </form> -->

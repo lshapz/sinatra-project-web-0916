@@ -54,7 +54,8 @@ patch '/users/beenthere' do
 end 
 
 post '/users/favorites' do
-  UserFavorite.create(params[:rest])
+  #binding.pry
+  UserFavorite.find_or_create_by(params[:rest])
   id = params[:rest][:user_id]
   going = UserRestaurant.find_or_create_by(user_id: params[:rest][:user_id], restaurant_id: params[:rest][:restaurant_id])
   going.update(been_there: true)
@@ -62,8 +63,9 @@ post '/users/favorites' do
 end 
 
 
-  delete '/users/favorites' do
-    UserFavorite.where(user_id: params[:user_id], restaurant_id: params[:restaurant_id]).take.destroy 
+  delete '/users/unfavorites' do
+    binding.pry
+    UserFavorite.where(user_id: params[:user_id], restaurant_id: params[:restaurant_id]).destroy_all 
     redirect to "/users/#{params[:user_id]}"
   end 
 
