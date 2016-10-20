@@ -1,15 +1,15 @@
-<h2><p>Category:</p></h2>
-<h3><p><%= @category.name %></p>
-<p>Restaurants:</p></h3>
+<h2><p><%= @category.name %></p></h2>
+<h3><p>Restaurants:</p></h3>
 
 <% @rest.each do |rester| %>
 <a class="nolist" href="/restaurants/<%=rester.id%>"><%=rester.name%></a>
 <%end %>
-<p>Users Who Enjoy:</p>
+<h3><p>Users Who Enjoy:</p></h3>
 <% @users.each do |user| %>
 <a class="nolist" href="/users/<%=user.id%>"><%=user.name%></a>
 <%end %>
+<%if !@users.empty? %>
 <br></br><br></br>
-
+<%end%>
 
 <p><a href="/categories/<%=@category.id%>/edit">Edit Category</a></p>

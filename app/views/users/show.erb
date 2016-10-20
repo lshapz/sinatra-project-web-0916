@@ -13,9 +13,9 @@
     }
     </style>
 
-<h3>Name: <%= @user.name %></h3>
+<h2><%= @user.name %></h2>
 
-<p>I've Tried: </p>
+<h3><p>I've Tried: </p></h3>
 
 <% @sortable.each do |try| %>
 <% if try.been_there == true %>
@@ -23,18 +23,18 @@
 <% end %>
 <% end %>
 
-<p>Favorite Restaurants:</p>
+<h3><p>Favorite Restaurants:</p></h3>
 <% @faveable.each do |restaurant| %>
 <a class="nolist" href="/restaurants/<%=restaurant.id%>"><%= restaurant.name %></a>
   </form>
 
 <% end %>
-<div class="nolist"><p>My Favorites' Categories: </p>
+<h3><div class="nolist"><p>My Favorites' Categories: </p></h3>
 <% @categories.each do |cat| %>
 <a href="/categories/<%=cat.id%>"><%= cat.name %></a><%end%>
 </div>
 
-<p>Add To Favorite Restaurants: </p>
+<h3><p>Add To Favorite Restaurants: </p></h3>
 
 <form action="/users/favorites" method="post">
 
@@ -52,7 +52,7 @@
 <input type="hidden" id="hidden" value="<%=@user.id%>" name="rest[user_id]">
 </form>
 
-<p>Subtract From Favorite Restaurants: </p>
+<h3><p>Subtract From Favorite Restaurants: </p></h3>
 
 <form action="/users/unfavorites" method="post">
 <input id="hidden" type="hidden" name="_method" value="delete">
@@ -69,7 +69,7 @@
 
 </form>
 
-<div class="wrapper"><p>Restaurants To Try: </p>
+<h3><div class="wrapper"><p>Restaurants To Try: </p></h3>
 <% @tryable.each do |try| %>
 <div class="rester"><a class="nolist" href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a>
   <form class="nolist" action="/users/restaurants" method="post">
