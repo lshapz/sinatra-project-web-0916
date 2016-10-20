@@ -64,9 +64,10 @@ get '/restaurants/:id' do
     @restaurant = Restaurant.find(params[:id])
     if @restaurant.user_restaurants
          @goers = @restaurant.user_restaurants.sort_by {|x| x.user.name}
-         @lovers = @restaurant.user_favorites.sort_by {|x| x.user.name}
     end 
-    binding.pry
+    if @restaurant.user_favorites
+      @lovers = @restaurant.user_favorites.sort_by {|x| x.user.name}
+    end 
     erb :'/restaurants/show'
   end
 end
