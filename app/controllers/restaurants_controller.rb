@@ -4,7 +4,17 @@ require_all ('app/adapters')
 
 get '/restaurants' do
   rest = Restaurant.all
+  @last_id = Restaurant.last.id 
+
+  # @restaurants = []
+  # rester = rest.sort_by {|x| x.name}
+  # rester.delete_if {|thing| thing.id + 10 >= @last_id}
+  # selection = rest.select {|thing| thing.id + 10 >= @last_id}
+  # @restaurants = rester
+  # selection.each {|x| @restaurants.unshift(x)} 
+  # @restaurants
   @restaurants = rest.sort_by {|x| x.name}
+
   erb :'/restaurants/index'
 end
 
