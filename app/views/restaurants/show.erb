@@ -18,7 +18,7 @@
 <% end %>
 </ul>
 
-<p>Users who want to visit here:</p>
+<p>Users who want to try here:</p>
 
 <% @goers.each do |user_rest| %>
   <% if user_rest.been_there == false %>
@@ -35,7 +35,7 @@
   <% end %>
 <% end %>
 
-<p><strong>User wants to visit here?</strong></p>
+<p><strong>User wants to try here?</strong></p>
 
 <form action="/restaurants/users/try" method="post">
 

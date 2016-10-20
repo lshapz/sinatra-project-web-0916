@@ -90,10 +90,9 @@
 
 
 </form> -->
-
-
-<br></br>
-<br></br>
-
-<br></br>
+<% if !@tryable.empty? %>
+  <br></br>
+  <br></br>
+  <br></br>
+<%end %>
 <p><a href="/users/<%=@user.id%>/edit">Edit User</a></p>
