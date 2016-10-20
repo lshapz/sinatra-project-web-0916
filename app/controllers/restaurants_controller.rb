@@ -62,14 +62,37 @@ get '/restaurants/:id' do
     use = User.all
     @users = use.sort_by {|x| x.name}
     @restaurant = Restaurant.find(params[:id])
+  end
+  #binding.pry
     if @restaurant.user_restaurants
-         @goers = @restaurant.user_restaurants.sort_by {|x| x.user.name}
+       @goers = @restaurant.user_restaurants.sort_by {|x| x.user.name}
     end 
     if @restaurant.user_favorites
       @lovers = @restaurant.user_favorites.sort_by {|x| x.user.name}
     end 
+      collect1 = []
+      @restaurant.user_restaurants.each do |x| 
+        collect1 << [x.user_id, x.been_there]
+      end 
+          collect2 = []
+          collect3 = []
+          collect1.each do |status| 
+            #q << y[0]
+            if status.include?(true)
+                collect2 << status[0]
+            else
+               collect3 << status[0]
+            end
+          end
+      @maybe = @users.select {|user| collect3.include?(user.id)}    
+      @why = @users.select {|user| collect2.include?(user.id)}
+      #binding.pry
+      @new_visitors = (@users - @why)
+      @new_triers = (@new_visitors - @maybe)
+    #binding.pry
+  
     erb :'/restaurants/show'
-  end
+  
 end
 
 post '/restaurants/users/try' do
@@ -87,6 +110,7 @@ end
 post '/restaurants/users/tried' do
   #binding.pry
   gone = UserRestaurant.find_or_create_by(params)
+  #binding.pry
   gone.been_there = true
   gone.save
   

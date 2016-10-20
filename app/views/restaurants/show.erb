@@ -39,8 +39,8 @@
 
 <form action="/restaurants/users/try" method="post">
 
-<select name="user_id">
-<% @users.each do |user| %>
+<select name="user_id"> 
+<% @new_triers.each do |user| %>
  <option value="<%= user.id %>"><%= user.name %></option>
  <% end %>
 </select>
@@ -57,7 +57,7 @@
 <form action="/restaurants/users/tried" method="post">
 
 <select name="user_id">
-<% @users.each do |user| %>
+<% @new_visitors.each do |user| %>
  <option value="<%= user.id %>"><%= user.name %></option>
  <% end %>
 </select>
