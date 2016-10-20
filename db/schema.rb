@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20161019155454) do
     t.string "name"
     t.float  "rating"
     t.string "address"
-    t.string "spec_address"
     t.string "url"
     t.string "deals"
     t.string "deals_title"

@@ -1,5 +1,6 @@
 <p>Name: <%= @restaurant.name %></p>
-<p>Address: <%= @restaurant.address %>, <%= @restaurant.spec_address %></p>
+<p>Address: <%= @restaurant.address %></p>
+
 <p>Rating: <%= @restaurant.rating %></p>
 <p><a href="<%= @restaurant.url %>">View On Yelp</a></p>
 <p>Categories: </p>
@@ -69,5 +70,5 @@ None, sorry!
 
 <p><a href="/restaurants/<%=@restaurant.id%>/edit">Edit Me</a></p>
 
-<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?&key=AIzaSyAiV00GdVCNqe9FzxKXyZ4ljw3jV2hHvWA&q=<%=@restaurant.address%>+<%= @restaurant.spec_address %>" allowfullscreen></iframe>
+<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?&key=AIzaSyAiV00GdVCNqe9FzxKXyZ4ljw3jV2hHvWA&q=<%=@restaurant.address%>" allowfullscreen></iframe>
 

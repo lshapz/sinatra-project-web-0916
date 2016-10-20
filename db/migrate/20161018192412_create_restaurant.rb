@@ -4,7 +4,6 @@ class CreateRestaurant < ActiveRecord::Migration
        t.string :name
        t.float :rating
        t.string :address
-       t.string :spec_address
        t.string :url
        t.string :deals
        t.string :deals_title
