@@ -14,6 +14,7 @@ class YelpApi
 
   end
 
+#  def self.search(location: location, terms: terms, limit: limit)
   def self.search(location, terms, limit)
       client.search(location, terms, limit).businesses.map do |business|
         #binding.pry

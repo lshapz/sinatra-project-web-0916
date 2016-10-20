@@ -1,8 +1,9 @@
 <p>Name: <%= @restaurant.name %></p>
 <p>Address: <%= @restaurant.address %></p>
-
+<% if @restaurant.url %> 
+<p><a href="<%= @restaurant.url %>" style="float:right;display:inline;margin-right:77%;">View On Yelp!</a></p>
+<% end %>
 <p>Rating: <%= @restaurant.rating %></p>
-<p><a href="<%= @restaurant.url %>">View On Yelp</a></p>
 <p>Categories: </p>
 <ul><% @restaurant.categories.each do |cat| %>
 <li><a href="/categories/<%=cat.id%>"><%= cat.name %></a></li><%end%></ul>
@@ -10,6 +11,8 @@
 None, sorry!
 <% else %>
 <a href="<%= @restaurant.deals_url %>"><%= @restaurant.deals_title %></a></p><%end%>
+
+
 <p>Users who favorited here:</p>
 
 <ul><% @lovers.each do |fave| %>
@@ -68,7 +71,7 @@ None, sorry!
 </form>
 
 
-<p><a href="/restaurants/<%=@restaurant.id%>/edit">Edit Me</a></p>
+<p><a href="/restaurants/<%=@restaurant.id%>/edit">Edit Restaurant</a></p>
 
 <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?&key=AIzaSyAiV00GdVCNqe9FzxKXyZ4ljw3jV2hHvWA&q=<%=@restaurant.address%>" allowfullscreen></iframe>
 

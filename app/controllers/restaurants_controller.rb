@@ -4,7 +4,9 @@ require_all ('app/adapters')
 
 get '/restaurants' do
   rest = Restaurant.all
-  @last_id = Restaurant.last.id 
+  if !Restaurant.all.empty?
+    @last_id = Restaurant.last.id 
+  end 
 
   # @restaurants = []
   # rester = rest.sort_by {|x| x.name}
@@ -42,6 +44,10 @@ post '/restaurants' do
       @restaurant.categories << new_cat
     end 
   end 
+
+  #YelpApi.search(location: params[:rest][:address], terms: params[:rest], limit: {limit: 1})
+  # rest = Restaurant.last
+  # id = rest.id
    #Category.find_or_create_by(params[:cat])
   #@restaurant.categories = []
 
