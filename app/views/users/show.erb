@@ -62,9 +62,7 @@
 </form>
 
 <div class="wrapper"><p>Restaurants To Try: </p>
-<% @sortable.each do |try| %>
-<% if try.been_there == false %>
-
+<% @tryable.each do |try| %>
 <div class="rester"><a class="nolist" href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a>
   <form class="nolist" action="/users/restaurants" method="post">
   <input type="hidden" value="<%=@user.id%>" name="rest[user_id]">
@@ -79,7 +77,6 @@
   <input id="hidden" type="hidden" name="also[been_there]" value="true">
   <input type="submit" value="I tried it!">
 </form></div>
-<% end %>
 <% end %>
 </div>
 <!-- 
