@@ -103,7 +103,6 @@ end
 
 post '/restaurants/favorites' do
   #binding.pry 
-
   UserFavorite.find_or_create_by(params[:rest])
   id = params[:rest][:restaurant_id]
   going = UserRestaurant.find_or_create_by(user_id: params[:rest][:user_id], restaurant_id: params[:rest][:restaurant_id])

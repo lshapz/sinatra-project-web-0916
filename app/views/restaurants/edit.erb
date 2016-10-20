@@ -1,3 +1,19 @@
+<style>
+
+.checkbox-grid li {
+  display:inline-block;
+    width: 20%;
+        /*margin-right: 25%;*/
+
+}
+.checkbox-grid ul {
+  padding-top: 20%;
+  /*margin-bottom: 5%;*/
+  
+
+}
+</style>
+
 <h3>Edit A Restaurant</h3>
 
 <form method="POST" action="/restaurants/<%=@restaurant.id%>">
@@ -6,11 +22,12 @@
 
 <p><label for="address">Restaurant Address:</label><input type="text" name="restaurant[address]" value="<%=@restaurant.address%>"></p>
 
+
 <p><label for="cat">Restaurant Categories:</label></p>
-  <%@catego.each do |category|%>
+<ul class="checkbox-grid">  <%@catego.each do |category|%>
    
-<p><input id="<%=category.name%>" type="checkbox" name="cat[]" value="<%= category.id %>" <%='checked' if @restaurant.categories.include?(category)%>><%=category.name %></p>
-  <%end%>
+<li><input id="<%=category.name%>" type="checkbox" name="cat[]" value="<%= category.id %>" <%='checked' if @restaurant.categories.include?(category)%>><%=category.name %></li>
+  <%end%></ul>
 
 
 <input type="hidden" id="hidden" name="_method" value="patch">
@@ -19,9 +36,10 @@
 
 </form>
 
-
+<a href="/categories/new">Don't See The Right Category Yet?</a>
 <p>  <form action="/restaurants/<%=@restaurant.id%>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Entire Restauarant">
   </form>
+
 </p>
