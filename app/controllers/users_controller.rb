@@ -1,4 +1,17 @@
 class UsersController < ApplicationController
+require 'sinatra'
+require 'sinatra/bouncer'
+  register Sinatra::Bouncer
+
+rules do
+  # example: allow any GET request
+  can(:get, :all)
+
+  # example: logged in users can edit their account
+  if(current_user)
+    can(:any, :all)
+  end
+end
 
 get '/users' do
   use = User.all
