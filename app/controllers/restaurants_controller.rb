@@ -49,6 +49,8 @@ end
 
 post '/restaurants/users' do
   #binding.pry
+      protected!
+
   if UserRestaurant.where(params).empty? 
     params[:been_there] = false
     UserRestaurant.create(params)

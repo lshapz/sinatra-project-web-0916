@@ -13,6 +13,8 @@ end
 
 
 post '/users' do
+  protected!
+
   @user = User.create(params)
   redirect "/users/#{@user.id}"
 end
@@ -35,6 +37,8 @@ end
 
   delete '/users/restaurants' do
     #binding.pry
+        protected!
+
     UserRestaurant.where(user_id: params[:rest][:user_id], restaurant_id: params[:rest][:restaurant_id]).take.destroy
     #binding.pry
     ##binding.pry
@@ -42,6 +46,8 @@ end
   end 
 
   delete '/users/unfavorite' do
+        protected!
+
     UserFavorite.where(user_id: params[:user_id], restaurant_id: params[:restaurant_id]).take.destroy 
     redirect to "/users/#{params[:user_id]}"
 
@@ -49,6 +55,8 @@ end
 
 
 patch '/users/beenthere' do 
+      protected!
+
   @rest = UserRestaurant.find_by(params[:rest])
   @rest.update(params[:also])
   id = params[:rest][:user_id]
@@ -57,6 +65,8 @@ patch '/users/beenthere' do
 end 
 
 post '/users/favorites' do
+      protected!
+
   UserFavorite.create(params[:rest])
   id = params[:rest][:user_id]
   going = UserRestaurant.find_or_create_by(user_id: params[:rest][:user_id], restaurant_id: params[:rest][:restaurant_id])
@@ -65,6 +75,8 @@ post '/users/favorites' do
 end 
 
 patch '/users/:id' do
+      protected!
+
   @user = User.find(params[:id])
   #binding.pry
   @user.name = params[:user][:name]
@@ -74,6 +86,8 @@ end
 
   delete '/users/:id/delete' do
     #binding.pry
+        protected!
+
     UserRestaurant.where(user_id: params[:id]).destroy_all
     UserFavorite.where(user_id: params[:id]).destroy_all
     User.destroy(params[:id])
