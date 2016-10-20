@@ -23,6 +23,8 @@ get '/users/:id' do
   else
     @restaurants = Restaurant.all 
     @user = User.find(params[:id])
+    @sortable = @user.user_restaurants.sort_by {|x| x.restaurant.name}
+    @faveable = @user.restaurants.sort_by {|x| x.name}
     erb :'/users/show'
   end 
 end

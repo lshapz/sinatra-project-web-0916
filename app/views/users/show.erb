@@ -1,7 +1,7 @@
 <h3>Name: <%= @user.name %></h3>
 
 <p>Restaurants To Try: </p>
-<ul><% @user.user_restaurants.each do |try| %>
+<ul><% @sortable.each do |try| %>
 <% if try.been_there == false %>
 <li>
 <a href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a>
@@ -23,14 +23,14 @@
 
 <p>I've Tried: </p>
 <ul>
-<% @user.user_restaurants.each do |try| %>
+<% @sortable.each do |try| %>
 <% if try.been_there == true %>
   <li><a href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a></li>
 <% end %>
 <% end %>
 </ul>
 Favorite Restaurants:
-<ul><% @user.restaurants.each do |restaurant| %>
+<ul><% @faveable.each do |restaurant| %>
 <li><a href="/restaurants/<%=restaurant.id%>"><%= restaurant.name %></a></li>
   <form action="/users/unfavorite" method="post">
   <input type="hidden" value="<%=@user.id%>" name="user_id">

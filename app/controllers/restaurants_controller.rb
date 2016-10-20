@@ -18,6 +18,8 @@ post '/yelp' do
 end 
 
 get '/restaurants/new' do
+  caters = Category.all
+  @catego = caters.sort_by {|x| x.name}
   erb :'/restaurants/new'
 end
 
@@ -43,6 +45,8 @@ get '/restaurants/:id' do
   else
     @users = User.all
     @restaurant = Restaurant.find(params[:id])
+    @goers = @restaurant.user_restaurants.sort_by {|x| x.user.name}
+    @lovers = @restaurant.user_favorites.sort_by {|x| x.user.name}
     erb :'/restaurants/show'
   end
 end
@@ -59,6 +63,8 @@ post '/restaurants/users' do
 end
 
 get '/restaurants/:id/edit' do
+  caters = Category.all
+  @catego = caters.sort_by {|x| x.name}
   @restaurant = Restaurant.find(params[:id])
   erb :'/restaurants/edit'
 end

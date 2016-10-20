@@ -16,8 +16,9 @@ get '/categories/:id' do
   if Category.find_by_id(params[:id]) == nil
       redirect to '/categories/index'
   else
-    @restaurants = Restaurant.all 
     @category = Category.find(params[:id])
+    resting = @category.restaurants
+    @rest = resting.sort_by {|x| x.name}
     erb :'/categories/show'
   end 
 end
