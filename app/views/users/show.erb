@@ -35,6 +35,7 @@
 <form action="/users/favorites" method="post">
 
 <select name="rest[restaurant_id]">
+<option selected disabled>--Choose Restaurant--</option>
 <% @restaurants.each do |restaurant| %>
 <% if !@user.restaurants.include?(restaurant) %>
  <option value="<%= restaurant.id %>"><%= restaurant.name %></option>
@@ -51,7 +52,10 @@
 
 <form action="/users/unfavorites" method="post">
 <input id="hidden" type="hidden" name="_method" value="delete">
+
 <select name="restaurant_id">
+<option selected disabled>--Choose Restaurant--</option>
+
 <% @user.restaurants.each do |restaurant| %>
  <option value="<%= restaurant.id %>"><%= restaurant.name %></option>
  <% end %>

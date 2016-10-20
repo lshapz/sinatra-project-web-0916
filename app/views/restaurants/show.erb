@@ -40,6 +40,7 @@
 <form action="/restaurants/users/try" method="post">
 
 <select name="user_id"> 
+<option selected disabled>--Choose User--</option>
 <% @new_triers.each do |user| %>
  <option value="<%= user.id %>"><%= user.name %></option>
  <% end %>
@@ -57,6 +58,7 @@
 <form action="/restaurants/users/tried" method="post">
 
 <select name="user_id">
+<option selected disabled>--Choose User--</option>
 <% @new_visitors.each do |user| %>
  <option value="<%= user.id %>"><%= user.name %></option>
  <% end %>
@@ -70,7 +72,9 @@
 
 <p>Add here to a users' favorites?</p>
 <form action="/restaurants/favorites" method="post">
+
 <select name="rest[user_id]">
+<option selected disabled>--Choose User--</option>
 <% @no_fave.each do |user| %>
     <option value="<%= user.id %>"><%= user.name %></option>
   <% end %>
