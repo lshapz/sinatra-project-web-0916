@@ -1,16 +1,20 @@
+<style>
+a < .yelp {
+  float:right;
+  display: inline;
+  margin-right:77%;"
+}
+</style>
+
 <p>Name: <%= @restaurant.name %></p>
 <p>Address: <%= @restaurant.address %></p>
-<% if @restaurant.url %> 
-<p><a href="<%= @restaurant.url %>" style="float:right;display:inline;margin-right:77%;">View On Yelp!</a></p>
-<% end %>
+<div class="yelp"><% if @restaurant.url %><a href="<%= @restaurant.url %>">View On Yelp!</a><% end%>
+<% if @restaurant.deals %><a href="<%= @restaurant.deals_url %>"> Yelp Deal: <%= @restaurant.deals_title %></a><%end%></div>
 <p>Rating: <%= @restaurant.rating %></p>
 <p>Categories: </p>
 <ul><% @restaurant.categories.each do |cat| %>
 <li><a href="/categories/<%=cat.id%>"><%= cat.name %></a></li><%end%></ul>
-<p>Deals? <% if !@restaurant.deals %>
-None, sorry!
-<% else %>
-<a href="<%= @restaurant.deals_url %>"><%= @restaurant.deals_title %></a></p><%end%>
+
 
 
 <p>Users who favorited here:</p>
