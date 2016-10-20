@@ -5,6 +5,11 @@
 <% @rest.each do |rester| %>
 <a class="nolist" href="/restaurants/<%=rester.id%>"><%=rester.name%></a>
 <%end %>
+<p>Users Who Enjoy:</p>
+<% @users.each do |user| %>
+<a class="nolist" href="/users/<%=user.id%>"><%=user.name%></a>
+<%end %>
 <br></br><br></br>
+
 
 <p><a href="/categories/<%=@category.id%>/edit">Edit Category</a></p>

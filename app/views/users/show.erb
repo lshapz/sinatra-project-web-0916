@@ -30,7 +30,7 @@
 
 <% end %>
 <div class="nolist"><p>My Favorites' Categories: </p>
-<% @user.categories.each do |cat| %>
+<% @categories.each do |cat| %>
 <a href="/categories/<%=cat.id%>"><%= cat.name %></a><%end%>
 </div>
 

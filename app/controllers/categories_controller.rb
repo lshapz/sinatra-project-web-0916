@@ -19,6 +19,8 @@ get '/categories/:id' do
     @category = Category.find(params[:id])
     resting = @category.restaurants
     @rest = resting.sort_by {|x| x.name}
+    user = @category.users
+    @users = user.sort_by {|x| x.name}
     erb :'/categories/show'
   end 
 end
