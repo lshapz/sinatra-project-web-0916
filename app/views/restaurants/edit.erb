@@ -18,3 +18,10 @@
 <p><input type="submit" value="Edit Restaurant"></p>
 
 </form>
+
+
+<p>  <form action="/restaurants/<%=@restaurant.id%>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Entire Restauarant">
+  </form>
+</p>

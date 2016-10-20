@@ -1,0 +1,12 @@
+<h3>Edit My Category</h3>
+<form method="POST" action="/category">  
+<p><label for="category">Category Name:</label><input type="text" name="cat[name]" value="<%=@category.name%>"></p>
+<p><input type="submit" value="Update Category"></p>
+<input type="hidden" id="hidden" name="_method" value="patch">
+</form>
+<br></br>
+<p>  <form action="/categories/<%=@category.id%>/delete" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Entire Category">
+  </form>
+</p>

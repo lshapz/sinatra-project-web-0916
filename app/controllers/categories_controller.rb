@@ -23,6 +23,18 @@ get '/categories/:id' do
   end 
 end
 
+get '/categories/:id/edit' do
+  @category = Category.find(params[:id])
+  erb :'/categories/edit'
+end
+
+patch '/categories/:id' do
+  @category = Category.find(params[:id])
+  #binding.pry
+  @category.name = params[:cat][:name]
+  @category.save
+  redirect :"/categories/#{@category.id}"
+end
 
 post '/category' do 
   #binding.pry
@@ -31,4 +43,10 @@ post '/category' do
   redirect to "/categories/#{id}"
 end
 
+  delete '/categories/:id/delete' do
+    #binding.pry 
+    RestaurantCategory.where(category_id: params[:id]).destroy_all
+    Category.destroy(params[:id])
+    redirect to "/categories"
+  end 
 end 

@@ -60,10 +60,5 @@ Add To Favorite Restaurants:
 </form>
 
 
-<p>
-  <form action="/users/<%=@user.id%>/delete" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="delete entire user">
-  </form>
-</p>
+
 <a href="/users/<%=@user.id%>/edit">Edit Me</a>
