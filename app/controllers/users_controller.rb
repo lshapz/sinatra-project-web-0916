@@ -43,11 +43,6 @@ end
     redirect to "/users/#{params[:rest][:user_id]}"
   end 
 
-  delete '/users/unfavorite' do
-    UserFavorite.where(user_id: params[:user_id], restaurant_id: params[:restaurant_id]).take.destroy 
-    redirect to "/users/#{params[:user_id]}"
-
-  end 
 
 
 patch '/users/beenthere' do 
@@ -65,6 +60,12 @@ post '/users/favorites' do
   going.update(been_there: true)
   redirect to "/users/#{id}"
 end 
+
+
+  delete '/users/favorites' do
+    UserFavorite.where(user_id: params[:user_id], restaurant_id: params[:restaurant_id]).take.destroy 
+    redirect to "/users/#{params[:user_id]}"
+  end 
 
 patch '/users/:id' do
   @user = User.find(params[:id])

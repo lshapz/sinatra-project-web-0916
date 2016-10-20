@@ -1,9 +1,10 @@
 <h2><p>Category:</p></h2>
 <h3><p><%= @category.name %></p>
 <p>Restaurants:</p></h3>
-<ul>
+
 <% @rest.each do |rester| %>
-<li> <a href="/restaurants/<%=rester.id%>"><%=rester.name%></a> </li>
+<a class="nolist" href="/restaurants/<%=rester.id%>"><%=rester.name%></a>
 <%end %>
-</ul>
-<p><a href="/categories/<%=@category.id%>/edit">Edit Me</a></p>
+<br></br><br></br>
+
+<p><a href="/categories/<%=@category.id%>/edit">Edit Category</a></p>

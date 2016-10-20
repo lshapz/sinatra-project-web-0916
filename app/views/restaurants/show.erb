@@ -1,17 +1,13 @@
 <style>
-a < .yelp {
-  float:left;
-  display: inline;
-  margin-right:77%;"
-}
+
 </style>
 
 <p>Name: <%= @restaurant.name %></p>
 <p>Address: <%= @restaurant.address %></p>
-<div class="yelp"><% if @restaurant.url %><a href="<%= @restaurant.url %>">View On Yelp!</a><% end%>
+<div class="nolist"><% if @restaurant.url %><a href="<%= @restaurant.url %>">View On Yelp!</a><% end%>
 <% if @restaurant.deals %><a href="<%= @restaurant.deals_url %>"> Yelp Deal: <%= @restaurant.deals_title %></a><%end%></div>
 <p>Rating: <%= @restaurant.rating %></p>
-<div class="yelp"><p>Categories: </p>
+<div class="nolist"><p>Categories: </p>
 <% @restaurant.categories.each do |cat| %>
 <a href="/categories/<%=cat.id%>"><%= cat.name %></a><%end%>
 </div>
@@ -24,22 +20,22 @@ a < .yelp {
 
 <p>Users who want to visit here:</p>
 
-<ul><% @goers.each do |user_rest| %>
+<% @goers.each do |user_rest| %>
   <% if user_rest.been_there == false %>
-  <li><a href="/users/<%=user_rest.user.id%>"><%= user_rest.user.name %></a></li>
+<a href="/users/<%=user_rest.user.id%>" class="nolist"><%= user_rest.user.name %></a>
   <% end %>
   <% end %>
-</ul>
+
 
 <p>Users who have been here:</p>
 
-<ul><% @goers.each do |user_rest| %>
+<% @goers.each do |user_rest| %>
   <% if user_rest.been_there == true %>
-<li><a href="/users/<%=user_rest.user.id%>"><%= user_rest.user.name %></a></li>
+<a href="/users/<%=user_rest.user.id%>" class="nolist"><%= user_rest.user.name %></a>
   <% end %>
-<% end %></ul>
+<% end %>
 
-<strong>User wants to visit here?</strong>
+<p><strong>User wants to visit here?</strong></p>
 
 <form action="/restaurants/users/try" method="post">
 
@@ -56,7 +52,7 @@ a < .yelp {
 </form>
 
 
-<strong>User has been here?</strong>
+<p><strong>User has been here?</strong></p>
 
 <form action="/restaurants/users/tried" method="post">
 

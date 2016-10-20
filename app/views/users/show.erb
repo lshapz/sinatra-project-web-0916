@@ -1,47 +1,42 @@
 <h3>Name: <%= @user.name %></h3>
 
 <p>Restaurants To Try: </p>
-<ul><% @sortable.each do |try| %>
+<% @sortable.each do |try| %>
 <% if try.been_there == false %>
-<li>
-<a href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a>
-  <form action="/users/restaurants" method="post">
+
+<a class="nolist" href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a>
+  <form class="nolist" action="/users/restaurants" method="post">
   <input type="hidden" value="<%=@user.id%>" name="rest[user_id]">
   <input type="hidden" value="<%=try.restaurant.id%>" name="rest[restaurant_id]">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="I don't wanna go anymore">
   </form>
- <form action="/users/beenthere" method="post">
+ <form class="nolist" action="/users/beenthere" method="post">
   <input type="hidden" value="<%=@user.id%>" name="rest[user_id]">
   <input type="hidden" value="<%=try.restaurant.id%>" name="rest[restaurant_id]">
   <input type="hidden" id="hidden" name="_method" value="patch">
   <input id="hidden" type="hidden" name="also[been_there]" value="true">
   <input type="submit" value="I tried it!">
-</form></li>
+</form>
 <% end %>
-<% end %></ul>
+<% end %>
 
 <p>I've Tried: </p>
-<ul>
+
 <% @sortable.each do |try| %>
 <% if try.been_there == true %>
-  <li><a href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a></li>
+<a href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a>
 <% end %>
 <% end %>
-</ul>
-Favorite Restaurants:
-<ul><% @faveable.each do |restaurant| %>
-<li><a href="/restaurants/<%=restaurant.id%>"><%= restaurant.name %></a></li>
-  <form action="/users/unfavorite" method="post">
-  <input type="hidden" value="<%=@user.id%>" name="user_id">
-  <input type="hidden" value="<%=restaurant.id%>" name="restaurant_id">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="delete">
-  </form></li>
 
-<% end %></ul>
+<p>Favorite Restaurants:</p>
+<% @faveable.each do |restaurant| %>
+<a class="nolist" href="/restaurants/<%=restaurant.id%>"><%= restaurant.name %></a>
+  </form>
 
-Add To Favorite Restaurants: 
+<% end %>
+
+<p>Add To Favorite Restaurants: </p>
 
 <form action="/users/favorites" method="post">
 
@@ -49,15 +44,33 @@ Add To Favorite Restaurants:
 <% @restaurants.each do |restaurant| %>
  <option value="<%= restaurant.id %>"><%= restaurant.name %></option>
  <% end %>
+ <input type="submit" value="submit">
+
 </select>
+<p>Subtract From Favorite Restaurants: </p>
+
+<form action="/users/favorites" method="post">
+
+<select name="restaurant_id">
+<% @user.restaurants.each do |restaurant| %>
+ <option value="<%= restaurant.id %>"><%= restaurant.name %></option>
+ <% end %>
+    <input type="hidden" value="<%=@user.id%>" name="user_id">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+<input type="submit" value="submit">
+
+</select>
+<!-- 
+<form action="/users/unfavorite" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
 
 <input  type="hidden" id="hidden" value="<%=@user.id%>" name="rest[user_id]">
 <input  type="hidden" id="hidden" value="true" name="been_there">
 
-<input type="submit" value="submit">
 
-</form>
-
+</form> -->
 
 
-<a href="/users/<%=@user.id%>/edit">Edit Me</a>
+
+<p><a href="/users/<%=@user.id%>/edit">Edit User</a></p>
