@@ -64,7 +64,7 @@ end
 
 
   delete '/users/unfavorites' do
-    binding.pry
+    #binding.pry
     UserFavorite.where(user_id: params[:user_id], restaurant_id: params[:restaurant_id]).destroy_all 
     redirect to "/users/#{params[:user_id]}"
   end 
