@@ -89,11 +89,28 @@ get '/restaurants/:id' do
       #binding.pry
       @new_visitors = (@users - @why)
       @new_triers = (@new_visitors - @maybe)
-    #binding.pry
-  
+    
+    collectfave = []
+        @restaurant.user_favorites.each do |x|
+          collectfave <<  x.user_id 
+        end 
+    @sure = @users.select {|user| collectfave.include?(user.id)}
+    @no_fave = (@users - @sure)
+        
     erb :'/restaurants/show'
   
 end
+
+post '/restaurants/favorites' do
+  #binding.pry 
+
+  UserFavorite.find_or_create_by(params[:rest])
+  id = params[:rest][:restaurant_id]
+  going = UserRestaurant.find_or_create_by(user_id: params[:rest][:user_id], restaurant_id: params[:rest][:restaurant_id])
+  going.update(been_there: true)
+  redirect to "/restaurants/#{id}"
+end 
+
 
 post '/restaurants/users/try' do
   #binding.pry
