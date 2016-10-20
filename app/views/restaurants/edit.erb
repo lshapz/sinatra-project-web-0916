@@ -12,6 +12,20 @@
   
 
 }
+/*.category <a {
+        padding: 5px 5px;
+}
+ .category a {
+      background-color: #f44336;
+      color: white;
+      padding: 14px 25px;
+      text-align: center; 
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 25px;
+      margin: 5px;
+    }*/
+
 </style>
 
 <h3>Edit A Restaurant</h3>
@@ -32,14 +46,12 @@
 
 <input type="hidden" id="hidden" name="_method" value="patch">
 
-<p><input type="submit" value="Edit Restaurant"></p>
+<p><input type="submit" value="Edit Restaurant" style="float:left;clear:left;"></p>
 
 </form>
 
-<a href="/categories/new">Don't See The Right Category Yet?</a>
-<p>  <form action="/restaurants/<%=@restaurant.id%>/delete" method="post">
+ <form action="/restaurants/<%=@restaurant.id%>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Entire Restauarant">
+  <p> <input type="submit" value="Delete Entire Restaurant" style="float:left;clear:left;"></p>
   </form>
-
-</p>
+  <p><a href="/categories/new" class="category" style="margin-left: 15%">Don't See The Right Category Yet?</a></p>
