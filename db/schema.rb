@@ -13,6 +13,14 @@
 
 ActiveRecord::Schema.define(version: 20161019155454) do
 
+  create_table "ar_users", force: :cascade do |t|
+    t.string "email"
+    t.string "hashed_password"
+    t.string "salt"
+  end
+
+  add_index "ar_users", ["email"], name: "index_ar_users_on_email", unique: true
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
   end

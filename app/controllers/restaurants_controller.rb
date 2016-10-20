@@ -18,6 +18,8 @@ post '/yelp' do
 end 
 
 get '/restaurants/new' do
+  #binding.pry
+  @categories = Category.all
   erb :'/restaurants/new'
 end
 
