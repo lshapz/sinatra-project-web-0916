@@ -9,14 +9,14 @@
 None, sorry!
 <% else %>
 <a href="<%= @restaurant.deals_url %>"><%= @restaurant.deals_title %></a></p><%end%>
-<p>People who love this restaurant:</p>
+<p>Users who favorited here:</p>
 
 <ul><% @lovers.each do |fave| %>
 <li><a href="/users/<%=fave.user.id%>"><%= fave.user.name %></a></li>
 <% end %>
 </ul>
 
-<p>People who want to try this restaurant:</p>
+<p>Users who want to visit here:</p>
 
 <ul><% @goers.each do |user_rest| %>
   <% if user_rest.been_there == false %>
@@ -25,7 +25,7 @@ None, sorry!
   <% end %>
 </ul>
 
-<p>People who have visited us:</p>
+<p>Users who have been here:</p>
 
 <ul><% @goers.each do |user_rest| %>
   <% if user_rest.been_there == true %>
@@ -33,9 +33,26 @@ None, sorry!
   <% end %>
 <% end %></ul>
 
-<strong>Add To List of Restaurants To Try</strong>
+<strong>User wants to visit here?</strong>
 
-<form action="/restaurants/users" method="post">
+<form action="/restaurants/users/try" method="post">
+
+<select name="user_id">
+<% @users.each do |user| %>
+ <option value="<%= user.id %>"><%= user.name %></option>
+ <% end %>
+</select>
+
+<input type="hidden" id="hidden" value="<%=@restaurant.id%>" name="restaurant_id">
+
+<input type="submit" value="submit">
+
+</form>
+
+
+<strong>User has been here?</strong>
+
+<form action="/restaurants/users/tried" method="post">
 
 <select name="user_id">
 <% @users.each do |user| %>

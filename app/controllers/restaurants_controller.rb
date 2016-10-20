@@ -43,7 +43,8 @@ get '/restaurants/:id' do
   if Restaurant.find_by_id(params[:id]) == nil
       redirect to '/restaurants/new'
   else
-    @users = User.all
+    use = User.all
+    @users = use.sort_by {|x| x.name}
     @restaurant = Restaurant.find(params[:id])
     @goers = @restaurant.user_restaurants.sort_by {|x| x.user.name}
     @lovers = @restaurant.user_favorites.sort_by {|x| x.user.name}
@@ -51,7 +52,7 @@ get '/restaurants/:id' do
   end
 end
 
-post '/restaurants/users' do
+post '/restaurants/users/try' do
   #binding.pry
   if UserRestaurant.where(params).empty? 
     params[:been_there] = false
@@ -61,6 +62,19 @@ post '/restaurants/users' do
   id = params[:restaurant_id]
   redirect "/restaurants/#{id}"
 end
+
+
+post '/restaurants/users/tried' do
+  #binding.pry
+  gone = UserRestaurant.find_or_create_by(params)
+  gone.been_there = true
+  gone.save
+  
+  #binding.pry
+  id = params[:restaurant_id]
+  redirect "/restaurants/#{id}"
+end
+
 
 get '/restaurants/:id/edit' do
   caters = Category.all
