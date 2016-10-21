@@ -50,7 +50,7 @@ get '/restaurants/:id' do
   end
     if @restaurant.user_restaurants
        @goers = @restaurant.user_restaurants.sort_by {|x| x.user.name}
-       #alphabetized list of users who've been here
+       #alphabetized list of users who appear in user_restaurant table 
     end 
     if @restaurant.user_favorites
       @lovers = @restaurant.user_favorites.sort_by {|x| x.user.name}
@@ -63,25 +63,27 @@ get '/restaurants/:id' do
           collect2 = []
           collect3 = []
           collect1.each do |status| 
-            #q << y[0]
             if status.include?(true)
                 collect2 << status[0]
             else
                collect3 << status[0]
             end
           end
-      @maybe = @users.select {|user| collect3.include?(user.id)}    
-      @why = @users.select {|user| collect2.include?(user.id)}
-      @new_visitors = (@users - @why)
-      @new_triers = (@new_visitors - @maybe)
-#separates tried from want-to-try (same table just boolean!) for dropdown menus 
-
+      @interested = @users.select {|user| collect3.include?(user.id)}    
+        #in join table, hasn't visited
+      @been_there = @users.select {|user| collect2.include?(user.id)}
+        #in join table because has visited 
+      @new_visitors = (@users - @been_there)
+        #everyone who hasn't visited, even if they've expressed interest
+      @new_triers = (@new_visitors - @interested)
+        #everyone who hasn't visited or expressed interest 
+    #separates tried from want-to-try (same table just boolean!) for dropdown menus 
     collectfave = []
-        @restaurant.user_favorites.each do |x|
+        @lovers.each do |x|
           collectfave <<  x.user_id 
         end 
-    @sure = @users.select {|user| collectfave.include?(user.id)}
-    @no_fave = (@users - @sure)
+    @unsure = @users.select {|user| collectfave.include?(user.id)}
+    @no_fave = (@users - @unsure)
       #removes already-faved restaurants from add-to-fave dropdown menu
     erb :'/restaurants/show'
   
@@ -89,15 +91,13 @@ end
 
 post '/restaurants/favorites' do
   UserFavorite.find_or_create_by(params[:rest])
-  binding.pry
   id = params[:rest][:restaurant_id]
   going = UserRestaurant.find_or_create_by(user_id: params[:rest][:user_id], restaurant_id: params[:rest][:restaurant_id])
   going.update(been_there: true) 
   going.save
-    #update via dropdown list of users who haven't already favorited you
+  #update via dropdown list of users who haven't already favorited you 
   redirect to "/restaurants/#{id}"
 end 
-
 
 post '/restaurants/users/try' do
   if UserRestaurant.where(params).empty? 
@@ -108,7 +108,6 @@ post '/restaurants/users/try' do
   id = params[:restaurant_id]
   redirect "/restaurants/#{id}"
 end
-
 
 post '/restaurants/users/tried' do
   gone = UserRestaurant.find_or_create_by(params)
@@ -124,7 +123,7 @@ end
 get '/restaurants/:id/edit' do
   caters = Category.all
   @catego = caters.sort_by {|x| x.name}
-  #need these because categories is a checklist 
+  #need these because categories is a checklist of existing table and not new params entirely 
   @restaurant = Restaurant.find(params[:id])
   erb :'/restaurants/edit'
 end
@@ -134,7 +133,8 @@ patch '/restaurants/:id' do
   @restaurant.name = params[:restaurant][:name]
   @restaurant.address = params[:restaurant][:address]
   @restaurant.categories.clear 
-#clearing shouldn't be necessary with f_o_c_by but it fixed a bug I swear 
+  #I'm not sure if I like using .clear here - 
+  #maybe set new_cat to blank array, iterate through it, check !@restaurants.categories.include?(new_cat_item), << ?
   if params[:cat] != nil 
     params[:cat].each do |category|
       new_cat = Category.find_or_create_by(id: category)
@@ -147,13 +147,13 @@ end
 
 
 
-  delete '/restaurants/:id/delete' do
-  #make sure to clear IDs from joins tables to avoid future errors
-    UserRestaurant.where(restaurant_id: params[:id]).destroy_all
-    UserFavorite.where(restaurant_id: params[:id]).destroy_all
-    RestaurantCategory.where(restaurant_id: params[:id]).destroy_all
-    Restaurant.destroy(params[:id])
-    redirect to "/restaurants"
-  end 
+delete '/restaurants/:id/delete' do
+  #make sure to clear IDs from joins tables to avoid future errors - could also do with autosave: true in models  
+  UserRestaurant.where(restaurant_id: params[:id]).destroy_all
+  UserFavorite.where(restaurant_id: params[:id]).destroy_all
+  RestaurantCategory.where(restaurant_id: params[:id]).destroy_all
+  Restaurant.destroy(params[:id])
+  redirect to "/restaurants"
+end 
 
 end

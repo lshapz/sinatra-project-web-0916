@@ -6,11 +6,9 @@ get '/users' do
   erb :'/users/index'
 end
 
-
 get '/users/new' do
   erb :'/users/new'
 end
-
 
 post '/users' do
   @user = User.create(params)
@@ -25,7 +23,7 @@ get '/users/:id' do
     @restaurants = Restaurant.all 
     @user = User.find(params[:id])
     @sortable = @user.user_restaurants.sort_by {|x| x.restaurant.name}
-    #for future referance 
+    #for future reference  
     @faveable = @user.restaurants.sort_by {|x| x.name}
     #for the "my favorites list"
     @tryable = []
@@ -37,9 +35,7 @@ get '/users/:id' do
         end  
     @goners = @sortable - @tryable 
     # creates "I've been here" list 
-      #binding.pry
     @categories = @user.categories.sort_by {|x| x.name}.uniq
-    #binding.pry
     erb :'/users/show'
   end 
 end
@@ -50,10 +46,10 @@ get '/users/:id/edit' do
 end
 
 
-  delete '/users/restaurants' do
-    UserRestaurant.where(user_id: params[:rest][:user_id], restaurant_id: params[:rest][:restaurant_id]).take.destroy
-    redirect to "/users/#{params[:rest][:user_id]}"
-  end 
+delete '/users/restaurants' do
+  UserRestaurant.where(user_id: params[:rest][:user_id], restaurant_id: params[:rest][:restaurant_id]).take.destroy
+ redirect to "/users/#{params[:rest][:user_id]}"
+end 
 
 
 
@@ -63,7 +59,6 @@ patch '/users/beenthere' do
   #button to move from to_try to tried 
   id = params[:rest][:user_id]
   redirect to "/users/#{id}"
-
 end 
 
 post '/users/favorites' do
@@ -77,11 +72,11 @@ post '/users/favorites' do
 end 
 
 
-  delete '/users/unfavorites' do
+delete '/users/unfavorites' do
   #dropdown list of restaurants you HAVE already favorited  
-    UserFavorite.where(user_id: params[:user_id], restaurant_id: params[:restaurant_id]).destroy_all 
-    redirect to "/users/#{params[:user_id]}"
-  end 
+  UserFavorite.where(user_id: params[:user_id], restaurant_id: params[:restaurant_id]).destroy_all 
+  redirect to "/users/#{params[:user_id]}"
+end 
 
 patch '/users/:id' do
   @user = User.find(params[:id])
@@ -91,13 +86,13 @@ patch '/users/:id' do
   redirect :"/users/#{@user.id}"
 end
 
-  delete '/users/:id/delete' do
-    #make sure to clear IDs from joins tables to avoid future errors 
-    UserRestaurant.where(user_id: params[:id]).destroy_all
-    UserFavorite.where(user_id: params[:id]).destroy_all
-    User.destroy(params[:id])
-    redirect to "/users"
-  end 
+delete '/users/:id/delete' do
+  #make sure to clear IDs from joins tables to avoid future errors 
+  UserRestaurant.where(user_id: params[:id]).destroy_all
+  UserFavorite.where(user_id: params[:id]).destroy_all
+  User.destroy(params[:id])
+  redirect to "/users"
+end 
 
 
 end

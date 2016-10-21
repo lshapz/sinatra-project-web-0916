@@ -16,7 +16,7 @@
     -webkit-column-gap: 5px; /* Chrome, Safari, Opera */
     -moz-column-gap: 5px; /* Firefox */
     column-gap: 5px;
-}
+    }
   .more-column {
     -webkit-column-count: 5 ; /* Chrome, Safari, Opera */
     -moz-column-count: 5; /* Firefox */
@@ -27,45 +27,40 @@
     -webkit-column-gap: 5px; /* Chrome, Safari, Opera */
     -moz-column-gap: 5px; /* Firefox */
     column-gap: 5px;
-}
+    }
     #navbar {
       list-style-type: none;
       margin-left: 5%;
       padding: 0;
       overflow: hidden;
       text-align:center;
-
     }
- 
     .navbaritem {
       list-style-type: none;
       float: left; 
     }
-
     .navbaritem a {
-   display:inline-block;
-
+      display:inline-block;
     }
     .checkbox-grid li {
       display:inline-block;
       width: 20%;
-}
-.dropdown {
-  float:right;
-  margin-right: 10%;
-  margin-top:3%;
-  clear:both;
-  border-color:#7C6BBA;
-  padding: 14px 25px;
+    } 
+    .dropdown          {
+      float:right;
+      margin-right: 10%;
+      margin-top:3%;
+      clear:both;
+      border-color:#7C6BBA;
+      padding: 14px 25px;
       text-align: center; 
       text-decoration: none;
       border-radius: 25px;
       border-style: dotted;
-}
+    }
     li {
       list-style-type: none;
     }
-
     select {
       min-width: 175px;
     }
@@ -73,11 +68,9 @@
       background-color: #EDD3C4;
       font-family: 'Poppins';
     }
-
     #homepagelinks {
       text-align: center;
     }
-
     a:link {
       background-color: #f44336;
       color: white;
@@ -88,7 +81,6 @@
       border-radius: 25px;
       margin: 5px;
     }
-
     a:hover {
       color: #930516;
       background-color: #98473E;
@@ -98,17 +90,14 @@
       text-decoration: none;
       display: inline-block;
     }
-
     a:visited {
       color: white;
     }
-
     a < .nolist {
        float:left;
        display: inline;
        margin-right:77%;
     }
-
     input[type=button], input[type=submit], input[type=reset] {
       background-color: #7C6BBA ;
       border: none;
@@ -118,8 +107,7 @@
       margin: 4px 2px;
       cursor: pointer;
       border-radius: 5px;
-   }
-
+    }
     input[type=text] {
       background-color: #E3DBFF ;
       border: solid;
@@ -133,17 +121,12 @@
       border-radius: 5px;
       float: right;
       margin-right: 74%;
-/*      float:right;
-      display:inline-block;
-      margin-right: 50%;
-      overflow:hidden;
-      white-space:nowrap;
-*/   }
+    }
 
   </style>
 </head>
 <body>
-
+<div style="height:1px;font-size:1px;">&nbsp;</div>
     <ul id='navbar'>
       <li class="navbaritem"><a href="/restaurants/new">Add A Restaurant</a></li>
       <li class="navbaritem"><a href="/users/new">Add A User</a></li>
@@ -152,10 +135,10 @@
       <li class="navbaritem"><a href="/users">See All Users</a></li>
       <li class="navbaritem"><a href="/categories">See All Categories</a></li>
     </ul>
-
-    <br>
+<div style="height:1px;font-size:1px;">&nbsp;</div>
     <%= yield %>
-    <br></br>
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+
 <p><small>Copyright Laura Shapiro and Amanda Steckler 2016 Flatiron School Etc.</small></p>
 </body>
 </html>

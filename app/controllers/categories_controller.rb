@@ -11,7 +11,6 @@ get '/categories/new' do
     erb :'/categories/new'
 end 
 
-
 get '/categories/:id' do
   if Category.find_by_id(params[:id]) == nil
       redirect to '/categories/new'
@@ -45,10 +44,11 @@ post '/category' do
   redirect to "/categories/#{id}"
 end
 
-  delete '/categories/:id/delete' do
+delete '/categories/:id/delete' do
   #make sure to clear IDs from joins tables to avoid future errors 
-    RestaurantCategory.where(category_id: params[:id]).destroy_all
-    Category.destroy(params[:id])
-    redirect to "/categories"
-  end 
+  RestaurantCategory.where(category_id: params[:id]).destroy_all
+  Category.destroy(params[:id])
+  redirect to "/categories"
+end 
+
 end 

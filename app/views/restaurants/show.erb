@@ -2,8 +2,9 @@
 <h3><p>Check us out?</p></h3>
 <form action="/restaurants/users/try" method="post">
 <select name="user_id"><option selected disabled>--Choose User--</option>
-<% @new_triers.each do |user| %><option value="<%= user.id %>">
-<%= user.name %></option><% end %></select>
+<% @new_triers.each do |user| %>
+<option value="<%= user.id %>"><%= user.name %></option>
+<% end %></select>
 <input type="hidden" id="hidden" value="<%=@restaurant.id%>" name="restaurant_id">
 <input type="submit" value="submit">
 </form>
@@ -11,8 +12,9 @@
 <h3><p>Been here?</p></h3>
 <form action="/restaurants/users/tried" method="post">
 <select name="user_id"><option selected disabled>--Choose User--</option>
-<% @new_visitors.each do |user| %><option value="<%= user.id %>">
-<%= user.name %></option><% end %></select>
+<% @new_visitors.each do |user| %>
+<option value="<%= user.id %>"><%= user.name %></option>
+<% end %></select>
 <input type="hidden" id="hidden" value="<%=@restaurant.id%>" name="restaurant_id">
 <input type="submit" value="submit">
 </form>
@@ -20,29 +22,36 @@
 <h3><p>Big fan?</p></h3>
 <form action="/restaurants/favorites" method="post">
 <select name="rest[user_id]"><option selected disabled>--Choose User--</option>
-<% @no_fave.each do |user| %><option value="<%= user.id %>">
-<%= user.name %></option><% end %></select>
+<% @no_fave.each do |user| %>
+<option value="<%= user.id %>"><%= user.name %></option>
+<% end %></select>
 <input type="submit" value="submit"><input type="hidden" id="hidden" value="<%=@restaurant.id%>" name="rest[restaurant_id]">
 </form></div>
 
 <h2><p><%= @restaurant.name %></p></h2>
 <h3><p>Address: <%= @restaurant.address %></p></h3>
-<div class="nolist"><% if @restaurant.url %><a href="<%= @restaurant.url %>">View On Yelp!</a><% end%>
-<% if @restaurant.deals %><a href="<%= @restaurant.deals_url %>"> Yelp Deal: <%= @restaurant.deals_title %></a><%end%></div>
+<div class="nolist">
+<% if @restaurant.url %><a href="<%= @restaurant.url %>">View On Yelp!</a><% end%>
+<% if @restaurant.deals %><a href="<%= @restaurant.deals_url %>"> Yelp Deal: <%= @restaurant.deals_title %></a>
+<%end%></div>
+
 <h3><p>Rating: <%= @restaurant.rating %></p></h3>
+
 <h3><p><div class="nolist"><p>Categories: </p></h3>
 <% @restaurant.categories.each do |cat| %>
-<a href="/categories/<%=cat.id%>"><%= cat.name %></a><%end%>
-</div>
+<a href="/categories/<%=cat.id%>"><%= cat.name %></a>
+<%end%></div>
 
 
 <h3><p>Users who favorited:</p></h3>
-<% @lovers.each do |fave| %><a href="/users/<%=fave.user.id%>">
-<%= fave.user.name %></a><% end %></ul>
+<% @lovers.each do |fave| %>
+<a href="/users/<%=fave.user.id%>"><%= fave.user.name %></a>
+<% end %></ul>
 
 <h3><p>Users who want to try:</p></h3>
 <% @goers.each do |user_rest| %>
-  <% if user_rest.been_there == false %><a href="/users/<%=user_rest.user.id%>" class="nolist">
+  <% if user_rest.been_there == false %>
+  <a href="/users/<%=user_rest.user.id%>" class="nolist">
 <%= user_rest.user.name %></a><% end %><% end %>
 
 
