@@ -17,15 +17,34 @@
     -moz-column-gap: 5px; /* Firefox */
     column-gap: 5px;
 }
+  .more-column {
+    -webkit-column-count: 5 ; /* Chrome, Safari, Opera */
+    -moz-column-count: 5; /* Firefox */
+    column-count: 5;
+    -webkit-column-width: 5px; /* Chrome, Safari, Opera */
+    -moz-column-width: 5px; /* Firefox */
+    column-width: 5px;
+    -webkit-column-gap: 5px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 5px; /* Firefox */
+    column-gap: 5px;
+}
     #navbar {
       list-style-type: none;
-      margin: 0;
+      margin-left: 5%;
       padding: 0;
       overflow: hidden;
+      text-align:center;
+
+    }
+ 
+    .navbaritem {
+      list-style-type: none;
+      float: left; 
     }
 
-    .navbaritem {
-      float: left;
+    .navbaritem a {
+   display:inline-block;
+
     }
 
     li {
