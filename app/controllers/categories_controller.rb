@@ -14,13 +14,15 @@ end
 
 get '/categories/:id' do
   if Category.find_by_id(params[:id]) == nil
-      redirect to '/categories/index'
+      redirect to '/categories/new'
+       #redirect so user isn't confronted with an error page
   else
     @category = Category.find(params[:id])
     resting = @category.restaurants
     @rest = resting.sort_by {|x| x.name}
     user = @category.users
-    @users = user.sort_by {|x| x.name}.uniq
+    @users = user.sort_by {|x| x.name}.uniq 
+  #needs uniq because it has_many through which means no find_or_create invoked - HTK look up if there's an AR fix
     erb :'/categories/show'
   end 
 end
@@ -32,21 +34,19 @@ end
 
 patch '/categories/:id' do
   @category = Category.find(params[:id])
-  #binding.pry
   @category.name = params[:cat][:name]
   @category.save
   redirect :"/categories/#{@category.id}"
 end
 
 post '/category' do 
-  #binding.pry
   @category = Category.find_or_create_by(params[:cat])
   id = @category.id
   redirect to "/categories/#{id}"
 end
 
   delete '/categories/:id/delete' do
-    #binding.pry 
+  #make sure to clear IDs from joins tables to avoid future errors 
     RestaurantCategory.where(category_id: params[:id]).destroy_all
     Category.destroy(params[:id])
     redirect to "/categories"
