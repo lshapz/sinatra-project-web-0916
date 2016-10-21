@@ -20,7 +20,7 @@ get '/categories/:id' do
     resting = @category.restaurants
     @rest = resting.sort_by {|x| x.name}
     user = @category.users
-    @users = user.sort_by {|x| x.name}
+    @users = user.sort_by {|x| x.name}.uniq
     erb :'/categories/show'
   end 
 end
