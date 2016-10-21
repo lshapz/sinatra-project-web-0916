@@ -1,15 +1,10 @@
 <h2><p><%= @category.name %></p></h2>
 <h3><p>Restaurants:</p></h3>
-
-<% @rest.each do |rester| %>
-<a class="nolist" href="/restaurants/<%=rester.id%>"><%=rester.name%></a>
-<%end %>
+<% @rest.each do |resteraunt| %><a class="nolist" href="/restaurants/<%=resteraunt.id%>">
+<%=resteraunt.name%></a><%end%>
 <h3><p>Users Who Enjoy:</p></h3>
-<% @users.each do |user| %>
-<a class="nolist" href="/users/<%=user.id%>"><%=user.name%></a>
-<%end %>
-<%if !@users.empty? %>
-<br></br><br></br>
-<%end%>
-
+<% @users.each do |user| %><a class="nolist" href="/users/<%=user.id%>">
+<%=user.name%></a><% end %>
+<%if !@users.empty? %><br></br><br></br><%end%>
+<!-- those empty breaks fixed something about the below link I forget how -->
 <p><a href="/categories/<%=@category.id%>/edit">Edit Category</a></p>

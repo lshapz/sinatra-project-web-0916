@@ -1,17 +1,4 @@
 <style>
-/*a < .wrapper */
-/* {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      
-    }
-*/
-/*.favorites {
-  margin-top: 13%;
-  clear:both;
-  position:relative;
-}*/
     .rester {
       float: left;
       overflow: hidden;
@@ -21,13 +8,13 @@
 <h2><%= @user.name %></h2>
 <div class="dropdown favorites">
 <h3><p>New Favorite </p></h3>
-
 <form action="/users/favorites" method="post">
 
 <select name="rest[restaurant_id]">
 <option selected disabled>--Choose Restaurant--</option>
 <% @restaurants.each do |restaurant| %>
 <% if !@user.restaurants.include?(restaurant) %>
+<!-- does not display if already faved -->
  <option value="<%= restaurant.id %>"><%= restaurant.name %></option>
 <% end %>
 <% end %>
@@ -45,24 +32,19 @@
 
 <select name="restaurant_id">
 <option selected disabled>--Choose Restaurant--</option>
-
+<!-- only displays if already faved -->
 <% @user.restaurants.each do |restaurant| %>
  <option value="<%= restaurant.id %>"><%= restaurant.name %></option>
  <% end %>
 </select>
 <input type="submit" value="submit">
 <input type="hidden" value="<%=@user.id%>" name="user_id">
-
 </form>
 </div>
 <h3><p>Been There</p></h3>
-
-<% @sortable.each do |try| %>
-<% if try.been_there == true %>
+<% @goners.each do |try| %>
 <a href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a>
 <% end %>
-<% end %>
-
 <h3><p>Loved That</p></h3>
 <% @faveable.each do |restaurant| %>
 <a class="nolist" href="/restaurants/<%=restaurant.id%>"><%= restaurant.name %></a>
@@ -92,14 +74,7 @@
 </form></div>
 <% end %>
 </div>
-<!-- 
-<form action="/users/unfavorite" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="delete">
-
-
-
-</form> -->
+<!-- buttons for changing status of a restaurant you wanted to try-->
   <br></br>
   <br></br>
   <br></br>

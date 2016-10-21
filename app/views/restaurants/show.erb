@@ -1,56 +1,30 @@
-<style>
-
-</style>
 <div class="dropdown">
 <h3><p>Check us out?</p></h3>
 <form action="/restaurants/users/try" method="post">
-
-<select name="user_id"> 
-<option selected disabled>--Choose User--</option>
-<% @new_triers.each do |user| %>
- <option value="<%= user.id %>"><%= user.name %></option>
- <% end %>
-</select>
-
+<select name="user_id"><option selected disabled>--Choose User--</option>
+<% @new_triers.each do |user| %><option value="<%= user.id %>">
+<%= user.name %></option><% end %></select>
 <input type="hidden" id="hidden" value="<%=@restaurant.id%>" name="restaurant_id">
-
 <input type="submit" value="submit">
-
 </form>
 
 <h3><p>Been here?</p></h3>
-
 <form action="/restaurants/users/tried" method="post">
-
-<select name="user_id">
-<option selected disabled>--Choose User--</option>
-<% @new_visitors.each do |user| %>
- <option value="<%= user.id %>"><%= user.name %></option>
- <% end %>
-</select>
-
+<select name="user_id"><option selected disabled>--Choose User--</option>
+<% @new_visitors.each do |user| %><option value="<%= user.id %>">
+<%= user.name %></option><% end %></select>
 <input type="hidden" id="hidden" value="<%=@restaurant.id%>" name="restaurant_id">
-
 <input type="submit" value="submit">
-
 </form>
 
 <h3><p>Big fan?</p></h3>
 <form action="/restaurants/favorites" method="post">
+<select name="rest[user_id]"><option selected disabled>--Choose User--</option>
+<% @no_fave.each do |user| %><option value="<%= user.id %>">
+<%= user.name %></option><% end %></select>
+<input type="submit" value="submit"><input type="hidden" id="hidden" value="<%=@restaurant.id%>" name="rest[restaurant_id]">
+</form></div>
 
-<select name="rest[user_id]">
-<option selected disabled>--Choose User--</option>
-<% @no_fave.each do |user| %>
-    <option value="<%= user.id %>"><%= user.name %></option>
-  <% end %>
-  </select>
-
-
-<input type="submit" value="submit">
-<input type="hidden" id="hidden" value="true" name="been_there">
-<input type="hidden" id="hidden" value="<%=@restaurant.id%>" name="rest[restaurant_id]">
-</form>
-</div>
 <h2><p><%= @restaurant.name %></p></h2>
 <h3><p>Address: <%= @restaurant.address %></p></h3>
 <div class="nolist"><% if @restaurant.url %><a href="<%= @restaurant.url %>">View On Yelp!</a><% end%>
@@ -63,30 +37,22 @@
 
 
 <h3><p>Users who favorited:</p></h3>
-
-<% @lovers.each do |fave| %>
-<a href="/users/<%=fave.user.id%>"><%= fave.user.name %></a>
-<% end %>
-</ul>
+<% @lovers.each do |fave| %><a href="/users/<%=fave.user.id%>">
+<%= fave.user.name %></a><% end %></ul>
 
 <h3><p>Users who want to try:</p></h3>
-
 <% @goers.each do |user_rest| %>
-  <% if user_rest.been_there == false %>
-<a href="/users/<%=user_rest.user.id%>" class="nolist"><%= user_rest.user.name %></a>
-  <% end %>
-  <% end %>
+  <% if user_rest.been_there == false %><a href="/users/<%=user_rest.user.id%>" class="nolist">
+<%= user_rest.user.name %></a><% end %><% end %>
 
 
 <h3><p>Users who have visited:</p></h3>
-
 <% @goers.each do |user_rest| %>
-  <% if user_rest.been_there == true %>
-<a href="/users/<%=user_rest.user.id%>" class="nolist"><%= user_rest.user.name %></a>
-  <% end %>
-<% end %>
+  <% if user_rest.been_there == true %><a href="/users/<%=user_rest.user.id%>" class="nolist">
+<%= user_rest.user.name %></a><% end %><% end %>
 
 
 <p><iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?&key=AIzaSyAiV00GdVCNqe9FzxKXyZ4ljw3jV2hHvWA&q=<%=@restaurant.address%>" allowfullscreen></iframe></p>  
 <div style="height:1px;font-size:1px;">&nbsp;</div>
+<!-- google maps API implemented in one line what what -->
 <a href="/restaurants/<%=@restaurant.id%>/edit">Edit Restaurant</a></p>

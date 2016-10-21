@@ -42,7 +42,6 @@ get '/restaurants/:id' do
   if Restaurant.find_by_id(params[:id]) == nil
       redirect to '/restaurants/new'
    #redirect so user isn't confronted with an error page
-
   else
     use = User.all
     @users = use.sort_by {|x| x.name}
@@ -90,6 +89,7 @@ end
 
 post '/restaurants/favorites' do
   UserFavorite.find_or_create_by(params[:rest])
+  binding.pry
   id = params[:rest][:restaurant_id]
   going = UserRestaurant.find_or_create_by(user_id: params[:rest][:user_id], restaurant_id: params[:rest][:restaurant_id])
   going.update(been_there: true) 

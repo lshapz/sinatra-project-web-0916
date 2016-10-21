@@ -1,57 +1,25 @@
 <style>
 
-.checkbox-grid li {
-  display:inline-block;
-    width: 20%;
-        /*margin-right: 25%;*/
-
-}
 .checkbox-grid ul {
   padding-top: 20%;
-  /*margin-bottom: 5%;*/
-  
-
-}
-/*.category <a {
-        padding: 5px 5px;
-}
- .category a {
-      background-color: #f44336;
-      color: white;
-      padding: 14px 25px;
-      text-align: center; 
-      text-decoration: none;
-      display: inline-block;
-      border-radius: 25px;
-      margin: 5px;
-    }*/
-
+}  
 </style>
 
 <h3>Edit A Restaurant</h3>
 
-<form method="POST" action="/restaurants/<%=@restaurant.id%>">
+  <form method="POST" action="/restaurants/<%=@restaurant.id%>">
+  <p><label for="rest_name">Restaurant Name:</label>
+  <input type="text" name="restaurant[name]" value="<%=@restaurant.name%>"></p>
+  <p><label for="address">Restaurant Address:</label>
+  <input type="text" name="restaurant[address]" value="<%=@restaurant.address%>"></p>
+  <p><label for="cat">Restaurant Categories:</label></p>
+  <ul class="checkbox-grid">  <%@catego.each do |category|%>
+  <li><input id="<%=category.name%>" type="checkbox" name="cat[]" value="<%= category.id %>" <%='checked' if @restaurant.categories.include?(category)%>><%=category.name %></li><%end%></ul>
+  <input type="hidden" id="hidden" name="_method" value="patch">
+  <p><input type="submit" value="Edit Restaurant" style="float:left;clear:left;"></p></form>
 
-<p><label for="rest_name">Restaurant Name:</label><input type="text" name="restaurant[name]" value="<%=@restaurant.name%>"></p>
-
-<p><label for="address">Restaurant Address:</label><input type="text" name="restaurant[address]" value="<%=@restaurant.address%>"></p>
-
-
-<p><label for="cat">Restaurant Categories:</label></p>
-<ul class="checkbox-grid">  <%@catego.each do |category|%>
-   
-<li><input id="<%=category.name%>" type="checkbox" name="cat[]" value="<%= category.id %>" <%='checked' if @restaurant.categories.include?(category)%>><%=category.name %></li>
-  <%end%></ul>
-
-
-<input type="hidden" id="hidden" name="_method" value="patch">
-
-<p><input type="submit" value="Edit Restaurant" style="float:left;clear:left;"></p>
-
-</form>
-
- <form action="/restaurants/<%=@restaurant.id%>/delete" method="post">
+  <form action="/restaurants/<%=@restaurant.id%>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
-  <p> <input type="submit" value="Delete Entire Restaurant" style="float:left;clear:left;"></p>
-  </form>
-  <p><a href="/categories/new" class="category" style="margin-left: 15%">Don't See The Right Category Yet?</a></p>
+  <p> <input type="submit" value="Delete Entire Restaurant" style="float:left;clear:left;"></p></form>
+
+<p><a href="/categories/new" class="category" style="margin-left: 15%">Don't See The Right Category Yet?</a></p>

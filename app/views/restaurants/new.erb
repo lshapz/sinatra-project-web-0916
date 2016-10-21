@@ -3,16 +3,9 @@
 .checkbox-grid ul {
   margin-top: 5%;
   margin-bottom: 5%;
-  
-
 }
-.checkbox-grid li {
-  display:inline-block;
-    width: 20%;
-        /*margin-right: 25%;*/
 
-}
-.why input
+.create_me input
 {
   float:right;
   display: block;
@@ -23,7 +16,6 @@
 </style>
 
 <h3>Search Yelp To Add ~10 New Restaurants</h3>
-
     <form method="POST" action="/yelp">
     <p><label for="location">Location:</label><input type="text" name="location"></p>
     <p><label for="term">Search Parameter:</label><input type="text" name="search[term]"></p>
@@ -31,24 +23,15 @@
     <p><input type="submit" value="Search Yelp"></p>
     </form>
 
-
-
-
 <h3>Add A Restaurant</h3>
-<form method="POST" action="/restaurants">  
-<p><label for="rest_name">Restaurant Name:</label><input type="text" name="rest[name]"></p>
-<p><label for="address">Restaurant Address:</label><input type="text" name="rest[address]"></p>
-<p><label for="rating">Restaurant Rating:</label><input type="text" name="rest[rating]"></p>
-<div style="height:1px;font-size:1px;">&nbsp;</div>
- <p> <label for="categories"></label></p><p><ul class="checkbox-grid"><%@catego.each do |category|%>
-   <!-- <p> -->
-  <li><input id="<%=category.name%>" type="checkbox" name="cat[]" value="<%= category.id %>"><%=category.name %></li>
-  <!-- </p> -->
-   <%end%>
-</ul></p>
-<!-- <p><label for="category">Restaurant Category:</label><input type="text" name="cat[name]"></p> -->
-
-<p><input class="why" type="submit" value="Create Restaurant"></p>
-</form>
+    <form method="POST" action="/restaurants">  
+    <p><label for="rest_name">Restaurant Name:</label><input type="text" name="rest[name]"></p>
+    <p><label for="address">Restaurant Address:</label><input type="text" name="rest[address]"></p>
+    <p><label for="rating">Restaurant Rating:</label><input type="text" name="rest[rating]"></p>
+    <div style="height:1px;font-size:1px;">&nbsp;</div>
+    <p> <label for="categories"></label></p><p><ul class="checkbox-grid"><%@catego.each do |category|%>
+    <li><input id="<%=category.name%>" type="checkbox" name="cat[]" value="<%= category.id %>">
+    <%=category.name %></li><%end%></ul></p>
+    <p><input id="create_me" type="submit" value="Create Restaurant"></p></form>
 
 <a href="/categories/new">Don't See The Right Category Yet?</a>

@@ -25,16 +25,19 @@ get '/users/:id' do
     @restaurants = Restaurant.all 
     @user = User.find(params[:id])
     @sortable = @user.user_restaurants.sort_by {|x| x.restaurant.name}
-    #for the "I've been here" list 
+    #for future referance 
     @faveable = @user.restaurants.sort_by {|x| x.name}
     #for the "my favorites list"
     @tryable = []
+          #creates the "to try list" (user_restaurants false)
         @sortable.each do |try|
             if try.been_there == false
               @tryable << try
             end  
         end  
-      #for the "to try list"
+    @goners = @sortable - @tryable 
+    # creates "I've been here" list 
+      #binding.pry
     @categories = @user.categories.sort_by {|x| x.name}.uniq
     #binding.pry
     erb :'/users/show'
@@ -64,7 +67,6 @@ patch '/users/beenthere' do
 end 
 
 post '/users/favorites' do
-
   UserFavorite.find_or_create_by(params[:rest])
   id = params[:rest][:user_id]
   going = UserRestaurant.find_or_create_by(user_id: params[:rest][:user_id], restaurant_id: params[:rest][:restaurant_id])

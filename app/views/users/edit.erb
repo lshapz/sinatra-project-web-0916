@@ -1,9 +1,9 @@
 <h3>Edit Name</h3>
 <form method="POST" action="/users/<%=@user.id%>">
-<p><label for="username"></label><input type="text" value="<%=@user.name%>" name="user[name]" style="float:left;"></p><input type="hidden" id="hidden" name="_method" value="patch">
+<p><label for="username"></label><input type="text" value="<%=@user.name%>" name="user[name]" style="float:left;">
+</p><input type="hidden" id="hidden" name="_method" value="patch">
 <p><input type="submit" value="Edit User" style="float:left;clear:left;"></p>
-</form>
-<br></br>
+</form><br></br>
 
 <p>
   <form action="/users/<%=@user.id%>/delete" method="post">
