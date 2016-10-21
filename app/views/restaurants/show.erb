@@ -1,7 +1,57 @@
 <style>
 
 </style>
+<div class="dropdown">
+<!-- <h2>User Actions</h2> -->
+<h3><p>Check us out?</p></h3>
+<form action="/restaurants/users/try" method="post">
 
+<select name="user_id"> 
+<option selected disabled>--Choose User--</option>
+<% @new_triers.each do |user| %>
+ <option value="<%= user.id %>"><%= user.name %></option>
+ <% end %>
+</select>
+
+<input type="hidden" id="hidden" value="<%=@restaurant.id%>" name="restaurant_id">
+
+<input type="submit" value="submit">
+
+</form>
+
+<h3><p>Been here?</p></h3>
+
+<form action="/restaurants/users/tried" method="post">
+
+<select name="user_id">
+<option selected disabled>--Choose User--</option>
+<% @new_visitors.each do |user| %>
+ <option value="<%= user.id %>"><%= user.name %></option>
+ <% end %>
+</select>
+
+<input type="hidden" id="hidden" value="<%=@restaurant.id%>" name="restaurant_id">
+
+<input type="submit" value="submit">
+
+</form>
+
+<h3><p>Big fan?</p></h3>
+<form action="/restaurants/favorites" method="post">
+
+<select name="rest[user_id]">
+<option selected disabled>--Choose User--</option>
+<% @no_fave.each do |user| %>
+    <option value="<%= user.id %>"><%= user.name %></option>
+  <% end %>
+  </select>
+
+
+<input type="submit" value="submit">
+<input type="hidden" id="hidden" value="true" name="been_there">
+<input type="hidden" id="hidden" value="<%=@restaurant.id%>" name="rest[restaurant_id]">
+</form>
+</div>
 <h2><p><%= @restaurant.name %></p></h2>
 <h3><p>Address: <%= @restaurant.address %></p></h3>
 <div class="nolist"><% if @restaurant.url %><a href="<%= @restaurant.url %>">View On Yelp!</a><% end%>
@@ -11,6 +61,8 @@
 <% @restaurant.categories.each do |cat| %>
 <a href="/categories/<%=cat.id%>"><%= cat.name %></a><%end%>
 </div>
+
+
 <h3><p>Users who favorited:</p></h3>
 
 <% @lovers.each do |fave| %>
@@ -35,58 +87,7 @@
   <% end %>
 <% end %>
 
-<h3><p>User wants to try here?</p></h3>
 
-<form action="/restaurants/users/try" method="post">
-
-<select name="user_id"> 
-<option selected disabled>--Choose User--</option>
-<% @new_triers.each do |user| %>
- <option value="<%= user.id %>"><%= user.name %></option>
- <% end %>
-</select>
-
-<input type="hidden" id="hidden" value="<%=@restaurant.id%>" name="restaurant_id">
-
-<input type="submit" value="submit">
-
-</form>
-
-
-<h3><p>User has visited?</p></h3>
-
-<form action="/restaurants/users/tried" method="post">
-
-<select name="user_id">
-<option selected disabled>--Choose User--</option>
-<% @new_visitors.each do |user| %>
- <option value="<%= user.id %>"><%= user.name %></option>
- <% end %>
-</select>
-
-<input type="hidden" id="hidden" value="<%=@restaurant.id%>" name="restaurant_id">
-
-<input type="submit" value="submit">
-
-</form>
-
-<h3><p>Add to a users' favorites?</p></h3>
-<form action="/restaurants/favorites" method="post">
-
-<select name="rest[user_id]">
-<option selected disabled>--Choose User--</option>
-<% @no_fave.each do |user| %>
-    <option value="<%= user.id %>"><%= user.name %></option>
-  <% end %>
-  </select>
-
-<input type="submit" value="submit">
-<input type="hidden" id="hidden" value="true" name="been_there">
-<input type="hidden" id="hidden" value="<%=@restaurant.id%>" name="rest[restaurant_id]">
-</form>
-
-
-<p><a href="/restaurants/<%=@restaurant.id%>/edit">Edit Restaurant</a></p>
-
-<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?&key=AIzaSyAiV00GdVCNqe9FzxKXyZ4ljw3jV2hHvWA&q=<%=@restaurant.address%>" allowfullscreen></iframe>
-
+<p><iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/search?&key=AIzaSyAiV00GdVCNqe9FzxKXyZ4ljw3jV2hHvWA&q=<%=@restaurant.address%>" allowfullscreen></iframe></p>  
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+<a href="/restaurants/<%=@restaurant.id%>/edit">Edit Restaurant</a></p>

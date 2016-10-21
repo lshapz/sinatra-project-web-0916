@@ -31,7 +31,7 @@ get '/users/:id' do
               @tryable << try
             end  
         end  
-    @categories = @user.categories.sort_by {|x| x.name}
+    @categories = @user.categories.sort_by {|x| x.name}.uniq
     #binding.pry
     erb :'/users/show'
   end 

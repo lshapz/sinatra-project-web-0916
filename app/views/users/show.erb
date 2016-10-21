@@ -14,26 +14,7 @@
     </style>
 
 <h2><%= @user.name %></h2>
-
-<h3><p>I've Tried: </p></h3>
-
-<% @sortable.each do |try| %>
-<% if try.been_there == true %>
-<a href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a>
-<% end %>
-<% end %>
-
-<h3><p>Favorite Restaurants:</p></h3>
-<% @faveable.each do |restaurant| %>
-<a class="nolist" href="/restaurants/<%=restaurant.id%>"><%= restaurant.name %></a>
-  </form>
-
-<% end %>
-<h3><div class="nolist"><p>My Favorites' Categories: </p></h3>
-<% @categories.each do |cat| %>
-<a href="/categories/<%=cat.id%>"><%= cat.name %></a><%end%>
-</div>
-
+<div class="dropdown">
 <h3><p>Add To Favorite Restaurants: </p></h3>
 
 <form action="/users/favorites" method="post">
@@ -68,6 +49,25 @@
 <input type="hidden" value="<%=@user.id%>" name="user_id">
 
 </form>
+</div>
+<h3><p>I've Tried: </p></h3>
+
+<% @sortable.each do |try| %>
+<% if try.been_there == true %>
+<a href="/restaurants/<%=try.restaurant.id%>"><%= try.restaurant.name %></a>
+<% end %>
+<% end %>
+
+<h3><p>Favorite Restaurants:</p></h3>
+<% @faveable.each do |restaurant| %>
+<a class="nolist" href="/restaurants/<%=restaurant.id%>"><%= restaurant.name %></a>
+  </form>
+
+<% end %>
+<h3><div class="nolist"><p>My Favorites' Categories: </p></h3>
+<% @categories.each do |cat| %>
+<a href="/categories/<%=cat.id%>"><%= cat.name %></a><%end%>
+</div>
 
 <h3><div class="wrapper"><p>Restaurants To Try: </p></h3>
 <% @tryable.each do |try| %>
@@ -95,9 +95,7 @@
 
 
 </form> -->
-<% if !@tryable.empty? %>
   <br></br>
   <br></br>
   <br></br>
-<%end %>
 <p><a href="/users/<%=@user.id%>/edit">Edit User</a></p>
