@@ -27,3 +27,5 @@ When you've successfully built out an app that allows you to add a restaurant ma
 <img src="/gifs/BasicSinatraAppwithAdapterPattern.gif">
 
 Using the adapter pattern, allow your users to hit the API and get restaurant objects returned. Once your adapter pattern is working effectively, feel free to tool around with the API.
+
+uses "shotgun" to start server

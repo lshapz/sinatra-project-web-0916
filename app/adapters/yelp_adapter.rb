@@ -35,4 +35,5 @@ class YelpApi
         end 
       end
   end
+  
 end
